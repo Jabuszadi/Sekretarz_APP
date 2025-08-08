@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio/Video Processing UI</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            color: #0056b3;
+        }
+        form div {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="number"],
+        input[type="file"],
+        select,
+        button,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box; /* Include padding and border in element's total width and height */
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        #status {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 4px;
+            font-weight: bold;
+             white-space: pre-wrap; /* Ensure line breaks from streamed data are shown */
+        }
+        #status.info { background-color: #e9f7ef; color: #0e5022; }
+        #status.error { background-color: #f7ebe9; color: #5a1818; }
+        #status.success { background-color: #d4edda; color: #155724; }
+        #status.warning { background-color: #fff3cd; color: #856404; }
+
+        #results {
+            margin-top: 20px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+        .transcription-segment {
+            margin-bottom: 10px;
+            padding: 8px;
+            background-color: #f9f9f9;
+            border-left: 4px solid #007bff;
+            white-space: pre-wrap; /* Preserve line breaks and wrap text */
+            word-wrap: break-word;
+            overflow-wrap: break-word; /* Ensure text breaks */
+        }
+        .minutes-section {
+            margin-bottom: 15px;
+        }
+        .minutes-section h3 {
+            margin-bottom: 5px;
+            border-bottom: 1px dotted #ccc;
+            padding-bottom: 3px;
+        }
+        pre {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto; /* Add scroll for long lines */
+            white-space: pre-wrap; /* Wrap long lines in pre */
+            word-wrap: break-word;
+            overflow-wrap: break_word; /* Ensure text breaks in pre */
+        }
+         /* Style for batch processing status */
+        #batchStatus {
+            margin-top: 10px;
+            font-style: italic;
+            color: #555;
+        }
+         .file-result {
+             border: 1px solid #ddd;
+             padding: 15px;
+             margin-bottom: 15px;
+             border-radius: 4px;
+             background-color: #fefefe;
+         }
+        .file-result h4 {
+             margin-top: 0;
+             color: #0056b3;
+        }
+        .prompt-section {
+            border: 1px solid #e0e0e0;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            background-color: #fcfcfc;
+        }
+        .prompt-section input[type="text"],
+        .prompt-section textarea {
+            width: calc(100% - 22px); /* Adjust width to account for padding and border */
+            padding: 10px;
+            margin-bottom: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .prompt-section textarea {
+            resize: vertical; /* Allow vertical resizing */
+        }
+        .prompt-section .remove-section-button {
+            width: auto; /* Override 100% width */
+            padding: 5px 10px;
+            font-size: 14px;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            float: right; /* Align to the right */
+        }
+        .prompt-section .remove-section-button:hover {
+            background-color: #c82333;
+        }
+        .advanced-options-toggle {
+            cursor: pointer;
+            padding: 10px;
+            background-color: #e2e6ea;
+            border-radius: 4px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #0056b3;
+            font-weight: bold;
+        }
+        .advanced-options-toggle:hover {
+            background-color: #d1d6db;
+        }
+        .toggle-icon {
+            font-size: 1.2em;
+            transition: transform 0.3s ease;
+        }
+        .toggle-icon.rotated {
+            transform: rotate(180deg);
+        }
+        #advancedPromptSection {
+            display: none;
+        }
+
+        /* NEW: Styles for Tabs */
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        .tab-button {
+            padding: 10px 15px;
+            cursor: pointer;
+            border: 1px solid transparent;
+            border-bottom: none;
+            background-color: #eee;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            margin-right: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        .tab-button.active {
+            background-color: #fff;
+            border-color: #ddd;
+            border-bottom: 1px solid #fff;
+            color: #0056b3;
+        }
+        .tab-content {
+            display: none;
+            padding-top: 10px;
+        }
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Audio/Video Processing</h1>
+
+        <!-- NEW: Tab Navigation -->
+        <div class="tabs">
+            <button class="tab-button active" data-tab="mainProcessing">Główne Przetwarzanie</button>
+            <button class="tab-button" data-tab="recognizer">Rozpoznawanie Mówców</button>
+        </div>
+
+        <!-- NEW: Tab Content - Main Processing -->
+        <div id="mainProcessing" class="tab-content active">
+            <p>Prześlij pliki audio lub wideo, aby transkrybować, diaryzować i generować protokoły spotkań.</p>
+        <form id="uploadForm">
+            <div>
+                    <label for="fileInput">Wybierz plik(i) audio/wideo:</label>
+                <input type="file" id="fileInput" accept=".wav,.mp3,.flac,.aac,.ogg,.m4a,.mkv,.mp4,.avi,.mov,.flv,.wmv" required multiple>
+            </div>
+
+            <div>
+                    <label for="whisperModelSelect">Rozmiar modelu Whisper:</label>
+                <select id="whisperModelSelect">
+                    <option value="tiny">tiny</option>
+                    <option value="base">base</option>
+                    <option value="small">small</option>
+                    <option value="medium">medium</option>
+                    <option value="large-v1">large-v1</option>
+                    <option value="large-v2">large-v2</option>
+                    <option value="large-v3" selected>large-v3</option>
+                </select>
+            </div>
+
+                <!-- Sekcja do przełączania zaawansowanych opcji -->
+            <div class="advanced-options-toggle" id="advancedOptionsToggle">
+                <h3>Zaawansowane opcje <span class="toggle-icon">▼</span></h3>
+            </div>
+            <div id="advancedPromptSection" style="display: none; border: 1px solid #eee; padding: 15px; border-radius: 8px; margin-bottom: 15px; background-color: #f9f9f9;">
+                <div>
+                    <label>Definiuj własne sekcje minut spotkania (opcjonalnie)</label>
+                    <div id="customPromptContainer">
+                        <!-- Domyślna sekcja promptu -->
+                        <div class="prompt-section">
+                            <input type="text" class="section-title" placeholder="Nazwa Sekcji (np. 'Główne Tematy')">
+                            <textarea class="section-query" rows="2" placeholder="Pytanie do AI (np. 'Jakie były główne tematy spotkania?')"></textarea>
+                            <button type="button" class="remove-section-button" style="background-color: #dc3545; margin-top: 5px;">Usuń</button>
+                        </div>
+                    </div>
+                    <button type="button" id="addPromptSectionButton" style="margin-top: 10px;">Dodaj Sekcję Promptu</button>
+
+                    <!-- NOWE ELEMENTY: Zapisywanie/Ładowanie Promptów -->
+                    <div style="margin-top: 20px; border-top: 1px solid #ddd; padding-top: 15px;">
+                        <label for="savedPromptSetsSelect">Zapisane Zestawy Promptów:</label>
+                        <select id="savedPromptSetsSelect" style="margin-bottom: 10px;">
+                            <option value="">-- Wybierz Zestaw --</option>
+                        </select>
+                        <button type="button" id="loadPromptSetButton" style="width: auto; padding: 8px 15px; margin-right: 10px; background-color: #28a745;">Załaduj Wybrany</button>
+                        <button type="button" id="saveCurrentPromptSetButton" style="width: auto; padding: 8px 15px; margin-right: 10px; background-color: #007bff;">Zapisz Bieżący</button>
+                        <button type="button" id="deletePromptSetButton" style="width: auto; padding: 8px 15px; background-color: #dc3545;">Usuń Wybrany</button>
+
+                        <!-- NOWY ELEMENT: Wczytywanie z pliku JSON -->
+                        <div style="margin-top: 15px;">
+                            <label for="uploadJsonPromptFile">Wczytaj Zestaw Promptów z pliku JSON:</label>
+                            <input type="file" id="uploadJsonPromptFile" accept=".json" style="width: auto; display: inline-block; margin-right: 10px;">
+                        </div>
+                    </div>
+
+                    <!-- Ukryte pole, do którego zostanie zapisany wygenerowany JSON -->
+                    <input type="hidden" id="generatedCustomPrompt" name="generated_custom_prompt">
+                </div>
+
+                <hr style="margin-top: 20px; margin-bottom: 20px; border-top: 1px solid #ddd;">
+
+                <div>
+                    <label for="chunkDuration">Długość chunka (sekundy):</label>
+                    <input type="number" id="chunkDuration" value="240" min="60" max="600" step="30" style="width:100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;">
+                </div>
+                <div>
+                    <label for="chunkOverlap">Nakładanie chunków (sekundy):</label>
+                    <input type="number" id="chunkOverlap" value="0" min="0" max="120" step="10" style="width:100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;">
+                </div>
+                </div> <!-- Koniec advancedPromptSection -->
+
+                <button type="submit" id="submitButton" style="margin-top: 20px;">Rozpocznij Przetwarzanie</button>
+            </form>
+        </div> <!-- Koniec tab-content mainProcessing -->
+
+        <!-- NEW: Tab Content - Recognizer -->
+        <div id="recognizer" class="tab-content">
+            <h2>Zarządzanie Mówcami</h2>
+            <!-- Sekcja dla bezpośredniego zapisu mówcy -->
+            <div style="margin-bottom: 20px;">
+                <h4>Bezpośredni Zapis Mówcy</h4>
+                <form id="directSpeakerEnrollmentForm">
+                    <div>
+                        <label for="speakerNameInput">Nazwa Mówcy:</label>
+                        <input type="text" id="speakerNameInput" placeholder="Wprowadź nazwę mówcy (np. 'Jan Kowalski')" style="width:100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;">
+                    </div>
+                <div>
+                        <label for="speakerAudioFileInput">Plik Audio Mówcy (krótka próbka głosu):</label>
+                        <input type="file" id="speakerAudioFileInput" accept=".wav,.mp3,.flac,.aac,.ogg,.m4a" required>
+                </div>
+                    <button type="submit" id="enrollSpeakerDirectButton">Zapisz Mówcę</button>
+                </form>
+            </div>
+
+            <!-- Sekcja wyświetlająca zarejestrowanych mówców -->
+            <div style="margin-top: 20px;">
+                <h4>Zarejestrowani Mówcy</h4>
+                <ul id="enrolledSpeakersList">
+                    <!-- Speakers will be loaded here by JavaScript -->
+                </ul>
+                <button type="button" id="refreshEnrolledSpeakersButton">Odśwież Listę Mówców</button>
+            </div>
+        </div> <!-- Koniec tab-content recognizer -->
+
+
+        <div id="status" class="info">Oczekiwanie na plik...</div>
+        <div id="batchStatus"></div>
+        <div id="results">
+            <!-- Results will be displayed here -->
+        </div>
+    </div>
+
+    <script>
+        const uploadForm = document.getElementById('uploadForm');
+        const fileInput = document.getElementById('fileInput');
+        const whisperModelSelect = document.getElementById('whisperModelSelect');
+        const submitButton = document.getElementById('submitButton');
+        const statusDiv = document.getElementById('status');
+        const resultsDiv = document.getElementById('results');
+        const batchStatusDiv = document.getElementById('batchStatus');
+        const advancedOptionsToggle = document.getElementById('advancedOptionsToggle');
+        const advancedPromptSection = document.getElementById('advancedPromptSection');
+        const addPromptSectionButton = document.getElementById('addPromptSectionButton');
+        const customPromptContainer = document.getElementById('customPromptContainer');
+        const generatedCustomPromptInput = document.getElementById('generatedCustomPrompt');
+        const savedPromptSetsSelect = document.getElementById('savedPromptSetsSelect');
+        const loadPromptSetButton = document.getElementById('loadPromptSetButton');
+        const saveCurrentPromptSetButton = document.getElementById('saveCurrentPromptSetButton');
+        const deletePromptSetButton = document.getElementById('deletePromptSetButton');
+        const uploadJsonPromptFile = document.getElementById('uploadJsonPromptFile');
+
+        // Elementy dla Zarządzania Mówcami (teraz w zakładce Rozpoznawanie Mówców)
+        const directSpeakerEnrollmentForm = document.getElementById('directSpeakerEnrollmentForm');
+        const speakerNameInput = document.getElementById('speakerNameInput'); // DODANO
+        const speakerAudioFileInput = document.getElementById('speakerAudioFileInput');
+        const enrollSpeakerDirectButton = document.getElementById('enrollSpeakerDirectButton');
+        const enrolledSpeakersList = document.getElementById('enrolledSpeakersList');
+        const refreshEnrolledSpeakersButton = document.getElementById('refreshEnrolledSpeakersButton');
+
+        // Elementy Zakładek
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        // Funkcja pomocnicza do aktualizacji statusu
+        function updateStatus(message, type = 'info') {
+            statusDiv.textContent = message;
+            statusDiv.className = 'status ' + type;
+            console.log(`Status (${type}): ${message}`); // Logowanie do konsoli dla debugowania
+        }
+
+        // Funkcje zarządzania promptami
+        async function loadPromptSets() {
+            try {
+                const response = await fetch('/prompts/list');
+                if (response.ok) {
+                    const prompts = await response.json();
+                    console.log('DEBUG: Prompts received from API:', prompts); 
+                    savedPromptSetsSelect.innerHTML = '<option value="">-- Wybierz Zestaw --</option>';
+                    // Zmieniono: iteruj po kluczach obiektu, a nie po obiekcie bezpośrednio
+                    Object.keys(prompts).forEach(name => { // TA LINIA ZMIENIONA
+                const option = document.createElement('option');
+                option.value = name;
+                option.textContent = name;
+                savedPromptSetsSelect.appendChild(option);
+                    });
+                } else {
+                    console.error('Failed to load prompt sets:', await response.text());
+                }
+            } catch (error) {
+                console.error('Error fetching prompt sets:', error);
+            }
+        }
+
+        loadPromptSetButton.addEventListener('click', async () => {
+            const selectedName = savedPromptSetsSelect.value;
+            if (!selectedName) {
+                alert('Proszę wybrać zestaw promptów do załadowania.');
+                return;
+            }
+            try {
+                // Re-fetch all prompts to ensure we have the latest data,
+                // or assume loadPromptSets() has already populated `promptsData` (if we store it).
+                // For simplicity, we'll re-fetch here.
+                const response = await fetch('/prompts/list');
+                if (response.ok) {
+                    const allPromptSets = await response.json(); // This will now be the nested object
+                    const promptsToLoad = allPromptSets[selectedName]; // Directly access by key
+
+                    if (promptsToLoad) {
+                        customPromptContainer.innerHTML = '';
+                        for (const title in promptsToLoad) {
+                            addPromptSection(title, promptsToLoad[title]);
+                        }
+                        updateStatus(`Zestaw promptów '${selectedName}' załadowany.`, 'info');
+                    } else {
+                        updateStatus(`Zestaw promptów '${selectedName}' nie znaleziono.`, 'error');
+                    }
+                } else {
+                    const errorText = await response.text();
+                    updateStatus(`Błąd ładowania zestawu promptów: ${errorText}`, 'error');
+                }
+            } catch (error) {
+                updateStatus(`Wystąpił błąd sieci podczas ładowania zestawu promptów: ${error.message}`, 'error');
+            }
+        });
+
+        saveCurrentPromptSetButton.addEventListener('click', async () => {
+            const promptName = prompt(
+                'Wprowadź nazwę dla bieżącego zestawu promptów:'
+            );
+            if (!promptName) return;
+
+            const prompts = {};
+            document.querySelectorAll('.prompt-section').forEach((section) => {
+                const title = section.querySelector('.section-title').value.trim();
+                const query = section.querySelector('.section-query').value.trim();
+                if (title && query) {
+                    prompts[title] = query;
+                }
+            });
+
+            // NOWA WALIDACJA: Sprawdź, czy słownik promptów jest pusty
+            if (Object.keys(prompts).length === 0) {
+                alert('Nie można zapisać pustego zestawu promptów. Proszę dodać przynajmniej jeden prompt.');
+                return;
+            }
+
+            try {
+                const response = await fetch('/prompts/save', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name: promptName, prompts: prompts }),
+                });
+                if (response.ok) {
+                    updateStatus(`Zestaw promptów '${promptName}' został zapisany.`, 'success');
+                    await loadPromptSets();
+                } else {
+                    const errorText = await response.text();
+                    updateStatus(`Błąd zapisu zestawu promptów: ${errorText}`, 'error');
+                }
+            } catch (error) {
+                updateStatus(`Wystąpił błąd sieci podczas zapisu zestawu promptów: ${error.message}`, 'error');
+            }
+        });
+
+        deletePromptSetButton.addEventListener('click', async () => {
+            const selectedName = savedPromptSetsSelect.value;
+            if (!selectedName) {
+                alert('Proszę wybrać zestaw promptów do usunięcia.');
+                return;
+            }
+            if (!confirm(`Czy na pewno chcesz usunąć zestaw promptów '${selectedName}'?`)) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`/prompts/delete/${selectedName}`, {
+                    method: 'DELETE',
+                });
+                if (response.ok) {
+                    updateStatus(`Zestaw promptów '${selectedName}' został usunięty.`, 'success');
+                    await loadPromptSets();
+                } else {
+                    const errorText = await response.text();
+                    updateStatus(`Błąd usuwania zestawu promptów: ${errorText}`, 'error');
+                }
+            } catch (error) {
+                updateStatus(`Wystąpił błąd sieci podczas usuwania zestawu promptów: ${error.message}`, 'error');
+            }
+        });
+
+        function addPromptSection(title = '', query = '') {
+            const sectionDiv = document.createElement('div');
+            sectionDiv.className = 'prompt-section';
+            sectionDiv.innerHTML = `
+                <input type="text" class="section-title" placeholder="Nazwa Sekcji (np. 'Główne Tematy')" value="${title}">
+                <textarea class="section-query" rows="2" placeholder="Pytanie do AI (np. 'Jakie były główne tematy spotkania?')" >${query}</textarea>
+                <button type="button" class="remove-section-button" style="background-color: #dc3545; margin-top: 5px;">Usuń</button>
+            `;
+            customPromptContainer.appendChild(sectionDiv);
+
+            sectionDiv.querySelector('.remove-section-button').addEventListener('click', () => {
+                sectionDiv.remove();
+            });
+        }
+
+        addPromptSectionButton.addEventListener('click', () => addPromptSection());
+
+        function generateCustomPromptJson() {
+            const prompts = {};
+            document.querySelectorAll('.prompt-section').forEach(section => {
+                const title = section.querySelector('.section-title').value.trim();
+                const query = section.querySelector('.section-query').value.trim();
+                if (title && query) {
+                    prompts[title] = query;
+                }
+            });
+            return Object.keys(prompts).length > 0 ? JSON.stringify(prompts) : null;
+        }
+
+        uploadJsonPromptFile.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (!file) {
+                return;
+            }
+
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                    const promptsFromFile = JSON.parse(e.target.result);
+                    if (typeof promptsFromFile === 'object' && promptsFromFile !== null) {
+                        customPromptContainer.innerHTML = '';
+                        for (const title in promptsFromFile) {
+                            addPromptSection(title, promptsFromFile[title]);
+                        }
+                        updateStatus('Zestaw promptów wczytany z pliku JSON.', 'success');
+                    } else {
+                        updateStatus('Nieprawidłowy format pliku JSON. Oczekiwano obiektu.', 'error');
+                        }
+                    } catch (error) {
+                    updateStatus(`Błąd parsowania pliku JSON: ${error.message}`, 'error');
+                    }
+                };
+                reader.readAsText(file);
+        });
+
+        // Funkcja do ładowania zarejestrowanych mówców
+        async function loadEnrolledSpeakers() {
+            enrolledSpeakersList.innerHTML = 'Ładowanie...';
+            try {
+                const response = await fetch('/get_enrolled_speakers/');
+                if (response.ok) {
+                    const speakers = await response.json();
+                    console.log('DEBUG: Speakers received from API:', speakers);
+                    enrolledSpeakersList.innerHTML = '';
+                    if (speakers && speakers.length > 0) {
+                        speakers.forEach(speaker => {
+                            const listItem = document.createElement('li');
+                            listItem.textContent = speaker;
+
+                            const deleteButton = document.createElement('button');
+                            deleteButton.textContent = 'Usuń';
+                            deleteButton.style.marginLeft = '10px';
+                            deleteButton.style.backgroundColor = '#dc3545';
+                            deleteButton.style.width = 'auto'; // Dostosuj szerokość
+                            deleteButton.style.padding = '5px 10px'; // Dostosuj padding
+                            deleteButton.style.fontSize = '12px'; // Mniejsza czcionka
+                            deleteButton.style.verticalAlign = 'middle'; // Wyrównaj pionowo
+
+                            deleteButton.addEventListener('click', async () => {
+                                if (confirm(`Czy na pewno chcesz usunąć mówcę '${speaker}'?`)) {
+                                    try {
+                                        const deleteResponse = await fetch(`/delete_speaker/${speaker}`, {
+                                            method: 'DELETE',
+                                        });
+                                        if (deleteResponse.ok) {
+                                            updateStatus(`Mówca '${speaker}' został usunięty.`, 'success');
+                                            loadEnrolledSpeakers(); // Odśwież listę po usunięciu
+                                        } else {
+                                            const errorData = await deleteResponse.json();
+                                            updateStatus(`Błąd usuwania mówcy: ${errorData.detail || deleteResponse.statusText}`, 'error');
+                                        }
+                                    } catch (error) {
+                                        updateStatus(`Wystąpił błąd sieci podczas usuwania mówcy: ${error.message}`, 'error');
+                                    }
+                                }
+                            });
+                            
+                            listItem.appendChild(deleteButton);
+                            enrolledSpeakersList.appendChild(listItem);
+                        });
+                    } else {
+                        enrolledSpeakersList.innerHTML = 'Brak zarejestrowanych mówców.';
+                    }
+                } else {
+                    const errorData = await response.json();
+                    enrolledSpeakersList.innerHTML = `Błąd ładowania mówców: ${errorData.detail || response.statusText}`;
+                    updateStatus(`Błąd ładowania zarejestrowanych mówców: ${errorData.detail || response.statusText}`, 'error');
+                }
+            } catch (error) {
+                enrolledSpeakersList.innerHTML = `Błąd sieci: ${error.message}`;
+                updateStatus(`Wystąpił błąd sieci podczas ładowania zarejestrowanych mówców: ${error.message}`, 'error');
+            }
+        }
+
+        let eventSource; // Deklaracja zmiennej globalnie lub w odpowiednim zasięgu
+
+        // Glowny kod JS - uruchamiany po zaladowaniu DOM
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Logika przełączania zakładek
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const targetTabId = button.dataset.tab;
+
+                    // Usuń 'active' z wszystkich przycisków zakładek i zawartości
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+
+                    // Dodaj 'active' do klikniętego przycisku i odpowiedniej zawartości
+                    button.classList.add('active');
+                    document.getElementById(targetTabId).classList.add('active');
+
+                    // Jeśli przełączamy na zakładkę 'Rozpoznawanie Mówców', załaduj listę mówców
+                    if (targetTabId === 'recognizer') {
+                        loadEnrolledSpeakers();
+                    }
+                });
+            });
+
+            // Wczytaj istniejące zestawy promptów po załadowaniu strony
+            await loadPromptSets();
+
+            // Przełączanie sekcji zaawansowanych opcji
+            advancedOptionsToggle.addEventListener('click', () => {
+                const isVisible = advancedPromptSection.style.display === 'block';
+                advancedPromptSection.style.display = isVisible ? 'none' : 'block';
+                advancedOptionsToggle.querySelector('.toggle-icon').classList.toggle('rotated', !isVisible);
+            });
+
+            // Handle direct speaker enrollment form submission
+            directSpeakerEnrollmentForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const speakerName = speakerNameInput.value.trim(); // Użyj wartości z nowego pola tekstowego
+                const audioFile = speakerAudioFileInput.files[0];
+
+                if (!speakerName) {
+                    updateStatus('Proszę podać nazwę mówcy.', 'error');
+                    return;
+                }
+
+                if (!audioFile) {
+                    updateStatus('Plik audio jest wymagany.', 'error');
+                    return;
+                }
+
+                const formData = new FormData();
+                formData.append('speaker_name_form', speakerName); // Wysyłamy jako speaker_name_form do API
+                formData.append('audio_file', audioFile);
+
+                updateStatus(`Zapisywanie mówcy '${speakerName}'...`, 'info');
+                enrollSpeakerDirectButton.disabled = true;
+
+                try {
+                    const response = await fetch('/enroll_speaker_direct/', {
+                        method: 'POST',
+                        body: formData,
+                    });
+
+                    if (response.ok) {
+                        const result = await response.json();
+                        updateStatus(result.message, 'success');
+                        speakerNameInput.value = ''; // Wyczyszczenie pola nazwy mówcy
+                        speakerAudioFileInput.value = '';
+                        await loadEnrolledSpeakers();
+                    } else {
+                        const errorData = await response.json();
+                        updateStatus(`Błąd zapisu mówcy: ${errorData.detail || response.statusText}`, 'error');
+                    }
+                } catch (error) {
+                    updateStatus(`Wystąpił błąd sieci podczas zapisu mówcy: ${error.message}`, 'error');
+                } finally {
+                    enrollSpeakerDirectButton.disabled = false;
+                }
+            });
+
+            // Obsługa przycisku odświeżania listy zarejestrowanych mówców
+            refreshEnrolledSpeakersButton.addEventListener('click', loadEnrolledSpeakers);
+
+            // Dodaj tę flagę tutaj, przed funkcją processBatch
+            let eventSourceClosedIntentionally = false; 
+
+            // Glowny formularz przesylania (istniejąca logika)
+            uploadForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+            const files = fileInput.files;
+            if (files.length === 0) {
+                    updateStatus('Proszę wybrać plik(i) do przetworzenia.', 'warning');
+                return;
+            }
+
+            const formData = new FormData();
+                for (const file of files) {
+                    formData.append('files', file);
+                }
+                formData.append('whisper_model_size', whisperModelSelect.value);
+
+                const customPromptsJson = generateCustomPromptJson();
+                if (customPromptsJson) {
+                    formData.append('custom_prompt', customPromptsJson);
+                }
+
+                formData.append('chunk_duration', document.getElementById('chunkDuration').value);
+                formData.append('chunk_overlap', document.getElementById('chunkOverlap').value);
+
+                const outputNameInput = document.getElementById('outputNameInput');
+                if (outputNameInput && outputNameInput.value) {
+                    formData.append('output_name', outputNameInput.value);
+                }
+
+                submitButton.disabled = true;
+                updateStatus('Wysyłanie pliku(ów)...', 'info');
+                resultsDiv.innerHTML = '';
+                batchStatusDiv.innerHTML = '';
+
+                try {
+                    const uploadResponse = await fetch('/upload_multiple/', {
+                     method: 'POST',
+                    body: formData,
+                 });
+
+                    if (uploadResponse.ok) {
+                        const uploadResult = await uploadResponse.json();
+                        updateStatus(uploadResult.message, 'success');
+                        const batchJobId = uploadResult.batch_job_id;
+                        batchStatusDiv.textContent = `Batch Job ID: ${batchJobId}`;
+
+                        await processBatch(batchJobId);
+
+                    } else {
+                     const errorData = await uploadResponse.json();
+                        updateStatus(`Błąd podczas wysyłania pliku: ${errorData.detail || uploadResponse.statusText}`, 'error');
+                    }
+                } catch (error) {
+                    updateStatus(`Wystąpił błąd sieci podczas wysyłania pliku: ${error.message}`, 'error');
+                } finally {
+                    submitButton.disabled = false;
+                }
+            });
+
+            // Zmieniona funkcja processBatch z flagą eventSourceClosedIntentionally
+            async function processBatch(batchJobId) {
+                updateStatus('Rozpoczynanie przetwarzania wsadowego...', 'info');
+                resultsDiv.innerHTML = ''; // Clear previous results
+                batchStatusDiv.textContent = 'Status wsadowy: Rozpoczynanie...';
+
+                eventSourceClosedIntentionally = false; // ZRESETUJ FLAGĘ PRZED NOWYM POŁĄCZENIEM
+                eventSource = new EventSource(`/process_batch_status/stream/${batchJobId}/`);
+                console.log('EventSource connection opened for batch:', batchJobId); // NOWY LOG
+
+                eventSource.onmessage = function (event) {
+                    const data = JSON.parse(event.data);
+                    console.log('Received SSE:', data);
+
+                    if (data.batch_complete) {
+                        updateStatus('Przetwarzanie wsadowe zakończone!', 'success');
+                        batchStatusDiv.textContent = 'Status wsadowy: Zakończono!';
+                        submitButton.disabled = false;
+                        eventSourceClosedIntentionally = true; // Set the flag here
+                        eventSource.close(); // Zamykanie połączenia po zakończeniu przetwarzania
+                        console.log('SSE connection closed due to batch_complete.');
+                        return;
+                    }
+
+                    if (data.status_type === 'info') {
+                        updateStatus(data.message, 'info');
+                        batchStatusDiv.textContent = `Status wsadowy: ${data.batch_progress.completed_files}/${data.batch_progress.total_files} - ${data.message}`;
+                    } else if (data.status_type === 'success') {
+                        displayFileResult(data);
+                        batchStatusDiv.textContent = `Status wsadowy: ${data.batch_progress.completed_files}/${data.batch_progress.total_files} - ${data.message}`;
+                        updateStatus(`Plik ${data.original_filename} przetworzony pomyślnie.`, 'success');
+                    } else if (data.status_type === 'error') {
+                        updateStatus(`Błąd podczas przetwarzania pliku ${data.original_filename}: ${data.message}`, 'error');
+                        batchStatusDiv.textContent = `Status wsadowy: ${data.batch_progress.completed_files}/${data.batch_progress.total_files} - Błąd przetwarzania pliku ${data.original_filename}.`;
+                    }
+                };
+
+                eventSource.onerror = function (err) {
+                    console.error('EventSource failed:', err);
+                    if (eventSourceClosedIntentionally) {
+                        console.log('SSE connection closed intentionally as batch completed.');
+                    } else {
+                        console.error('SSE connection closed due to unexpected error. This might be a network issue or server error.');
+                        updateStatus('Połączenie ze strumieniem statusu utracone lub błąd. Sprawdź konsolę po więcej szczegółów.', 'error');
+                    }
+                    eventSource.close(); // Ensure it's closed regardless
+                    submitButton.disabled = false;
+                };
+            }
+
+            function displayFileResult(data) {
+                const fileResultDiv = document.createElement('div');
+                fileResultDiv.className = 'file-result';
+                // Używamy data.original_filename, który jest wysyłany przez serwer
+                fileResultDiv.innerHTML = `<h4>Wyniki dla pliku: ${data.original_filename || 'Nieznany'}</h4>`;
+
+                if (data.status_type === 'success') {
+                    // Bezpośrednio używamy data.transcription_filename, które jest już pełną ścieżką
+                    if (data.transcription_filename) {
+                        fileResultDiv.innerHTML += `
+                            <p><strong>Plik transkrypcji:</strong> <a href="/${data.transcription_filename}" target="_blank">${data.transcription_filename}</a></p>
+                        `;
+                    } else {
+                        fileResultDiv.innerHTML += `<p><strong>Brak pliku transkrypcji.</strong></p>`;
+                    }
+
+                    // Bezpośrednio używamy data.minutes_filename, które jest już pełną ścieżką
+                    if (data.minutes_filename) {
+                         fileResultDiv.innerHTML += `
+                            <p><strong>Plik minut:</strong> <a href="/${data.minutes_filename}" target="_blank">${data.minutes_filename}</a></p>
+                        `;
+                    } else {
+                        fileResultDiv.innerHTML += `<p><strong>Brak pliku minut spotkania.</strong></p>`;
+                    }
+
+                    const speakerSection = document.createElement('div');
+                    speakerSection.innerHTML = `<h5>Mówcy w pliku:</h5>`;
+                    const speakerList = document.createElement('ul');
+
+                    const speakerDurations = {};
+
+                    // Iterujemy po transkrypcji, aby znaleźć unikalnych mówców i ich czasy
+                    if (data.transcription && data.transcription.length > 0) {
+                        data.transcription.forEach(segment => {
+                            const speakerLabel = segment.speaker;
+                            const duration = segment.end - segment.start; // Obliczamy czas trwania segmentu
+
+                            if (speakerLabel) { // Upewniamy się, że etykieta mówcy nie jest pusta
+                                if (speakerDurations[speakerLabel]) {
+                                    speakerDurations[speakerLabel] += duration;
+                                } else {
+                                    speakerDurations[speakerLabel] = duration;
+                                }
+                            }
+                        });
+
+                        // Sortujemy mówców alfabetycznie dla spójnego wyświetlania
+                        const sortedSpeakers = Object.keys(speakerDurations).sort();
+
+                        if (sortedSpeakers.length > 0) {
+                            sortedSpeakers.forEach(speakerLabel => {
+                                const listItem = document.createElement('li');
+                                // Usunięto wyświetlanie czasu trwania
+                                listItem.textContent = `${speakerLabel}`;
+                                speakerList.appendChild(listItem);
+                            });
+                        } else {
+                            speakerList.innerHTML = '<li>Brak zidentyfikowanych mówców.</li>';
+                        }
+                    } else {
+                        speakerList.innerHTML = '<li>Brak zidentyfikowanych mówców.</li>';
+                    }
+
+                    speakerSection.appendChild(speakerList);
+                    fileResultDiv.appendChild(speakerSection);
+
+             } else {
+                    fileResultDiv.innerHTML += `<p style="color: red;"><strong>Status: ${data.status_type || 'undefined'}</strong></p>`;
+                    fileResultDiv.innerHTML += `<p>${data.message || 'Wystąpił błąd podczas przetwarzania pliku.'}</p>`;
+                }
+                resultsDiv.appendChild(fileResultDiv);
+            }
+        });
+
+    </script>
+</body>
+</html>

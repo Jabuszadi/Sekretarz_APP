@@ -1,0 +1,18 @@
+fastapi
+uvicorn
+llama-index # <-- TUTAJ JEST!
+mcp-cli
+python-dotenv>=1.0.0
+sentence-transformers
+scikit-learn
+websockets
+httpx
+langchain-google-genai
+json
+pandas
+re
+pyannote.core
+qdrant-client
+langchain-community
+openai-whisper
+pyannote.audio

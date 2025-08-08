@@ -1,0 +1,22 @@
+{
+    "Domyślny Zestaw": {
+        "Główne Tematy": "Jakie są główne tematy i idee omówione w tym filmie?",
+        "Kluczowe Argumenty": "Jakie są najważniejsze argumenty lub punkty przedstawione przez twórcę/mówcę?",
+        "Zadania/Rekomendacje": "Jeśli film zawiera instrukcje, poradnik lub rekomendacje, proszę je wypunktować.",
+        "Docelowa Publiczność": "Dla kogo ten film jest przeznaczony? Jaka jest jego docelowa publiczność?",
+        "Ton i Nastrój": "Jaki jest ogólny ton i nastrój filmu (np. informacyjny, humorystyczny, edukacyjny, motywacyjny, ostrzegawczy)?",
+        "Streszczenie Koncowe": "Proszę o zwięzłe streszczenie całego filmu, podsumowujące jego najważniejsze wnioski."
+    },
+    "Filmy Youtube": {
+        "Domyślny Zestaw": "[object Object]"
+    },
+    "Kurs": {
+        "Tytuł lekcji / modułu": "wpisz pełną nazwę odcinka/lekcji.",
+        "Cel lekcji / Czego uczestnik się nauczy": "Podsumuj cele edukacyjne tej części kursu.",
+        "Najważniejsze zagadnienia": "wypunktuj kluczowe tematy, techniki, koncepcje lub procesy omawiane w tej lekcji.",
+        "Definicje i pojęcia*": "zdefiniuj istotne terminy lub teorie wprowadzone w tej części.",
+        "Ćwiczenia, quizy lub aktywności interaktywne": "jeśli lekcja je zawierała, krótko opisz.",
+        "Przykłady użycia / case study": "opisz (jeśli wystąpiły) przykłady praktyczne lub scenariusze.",
+        "Notatki dodatkowe lub wskazówki od prowadzącego": "cytaty, rekomendacje lub linki z lekcji"
+    }
+}

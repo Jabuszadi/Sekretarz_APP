@@ -1,0 +1,26 @@
+# Ignoruj zawartość folderu models (ale zachowaj sam folder)
+whisper5.8/models/*
+!whisper5.8/models/
+
+
+whisper5.8/.env
+
+
+# Wirtualne środowisko Pythona
+.venv/
+
+# Cache Pythona i pliki binarne
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Pliki logów
+*.log
+
+# Pliki systemowe (Windows)
+Thumbs.db
+Desktop.ini
+
+# Pliki IDE / edytorów (opcjonalnie)
+.vscode/
+.idea/
