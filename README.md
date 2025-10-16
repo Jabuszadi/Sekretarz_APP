@@ -210,6 +210,7 @@ Przykładowe zapytania do chatbota:
     *   "Wykonaj zapytanie SELECT * FROM processed_files LIMIT 2"
 
 ## 8. Struktura Projektu
+```text
 ├── agent_daemon.py # Daemon do monitorowania i zarządzania
 ├── agent_db.py # Bezpośrednia warstwa dostępu do bazy SQLite
 ├── agent_files.db # Plik bazy danych SQLite
@@ -262,6 +263,7 @@ Przykładowe zapytania do chatbota:
 ├── test.py
 ├── uploads/ # Katalog na przesyłane pliki
 └── utils.py # Funkcje pomocnicze
+```
 ## 9. Rozwiązywanie Problemów
 
 *   **`ImportError: cannot import name 'XYZ' from 'agents.database_agent'`**: Upewnij się, że usunąłeś wszystkie zbędne importy w `minimal_mcp_server.py` z `agents.database_agent` i pozostawiłeś tylko `mcp_database`.
