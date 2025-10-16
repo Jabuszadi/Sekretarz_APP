@@ -28,7 +28,7 @@ Główne funkcjonalności:
 
 System składa się z kilku wzajemnie komunikujących się komponentów, wykorzystujących protokół FastMCP oraz FastAPI do obsługi API i interfejsu użytkownika.
 
-*   **`agent_daemon.py`**: Prawdopodobnie daemon monitorujący wejście lub zarządzający procesami.
+*   **`agent_daemon.py`**: Daemon monitorujący wejście.
 *   **`agents/database_agent.py`**: Agent FastMCP odpowiedzialny za operacje na bazie danych SQLite, udostępniający narzędzia do zarządzania transkrypcjami, podsumowaniami i metadanymi plików.
 *   **`minimal_mcp_server.py`**: Główny serwer FastAPI i Router LlamaIndex. Działa jako punkt wejścia dla zapytań użytkownika, zarządza wywołaniami narzędzi lokalnych i zdalnych agentów, oraz integruje się z LlamaIndex ReActAgent do inteligentnego routingu zapytań.
 *   **`api_app.py`**: Aplikacja FastAPI obsługująca API do przesyłania plików, zarządzania promptami, oraz inne funkcjonalności związane z przetwarzaniem audio.
