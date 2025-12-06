@@ -1,0 +1,285 @@
+Maciek: wręcz używa cross-validation.
+Maciek: Czym jest to cross-validation?
+Maciek: Cross-validation to technika używana do oceny wydajności modelu,
+Maciek: która polega na podzieleniu zbioru danych na kilka części.
+Maciek: I tu kolejne słowo kluczowe dla Was wchodzi,
+Maciek: tak zwanych folds.
+Maciek: Te właśnie części nazywają się takimi foldami, folds.
+Maciek: Model jest trenowany na jednej części danych,
+Maciek: train set, i testowany na innej.
+Maciek: A proces ten jest powtarzany kilkakrotnie.
+Maciek: Kilkakrotnie.
+Maciek: Wyniki są następnie uśredniane,
+Maciek: aby uzyskać stabilną ocenę wydajności modelu.
+Maciek: No i zobaczmy, jak taki proces przebiega.
+Maciek: Po pierwsze, pierwszym krokiem w zastosowaniu cross-validation
+Maciek: jest podział danych.
+Maciek: Zbiór danych jest podzielony na k równych części.
+Maciek: I teraz, żeby to nie było zbyt abstrakcyjne,
+Maciek: myślmy sobie, że k równa się 10.
+Maciek: Ogólnie rzecz biorąc, procedura stosuje się do każdego k.
+Maciek: My będziemy szli z k równym 10.
+Maciek: Czyli dzielimy nasz zbiór na k, czyli 10 równych części.
+Maciek: W najczęściej stosowanej metodzie, tak by the way,
+Maciek: k fold cross-validation, k zazwyczaj wynosi 5 lub 10.
+Maciek: To są w ogóle takie zdrowe wartości dla ilości tych podzbiorów,
+Maciek: na które dzielimy nasz zbiór danych.
+Maciek: No ale dobrze, podzieliliśmy, poszatkowaliśmy,
+Maciek: wzięliśmy nóż, pocięliśmy na tych 10 kawałków nasz zbiór danych.
+Maciek: Co dalej?
+Maciek: Dalej jest trenowanie i testowanie.
+Maciek: Zamiast testowania też czasami się mówi walidacja.
+Maciek: I do tego zaraz dojdziemy.
+Maciek: Model jest trenowany na k-1 częściach danych.
+Maciek: Czyli w naszym przypadku na 9 częściach danych.
+Maciek: I to określamy mianem train setu, czyli zestawu danych do trenowania.
+Maciek: Czyli podzieliliśmy dane na 10 równych części.
+Maciek: Wydzieliliśmy na bok 9 z nich losowo.
+Maciek: I w tym momencie na tych 9 częściach danych,
+Maciek: trenujemy model.
+Maciek: I następnie to co wytrenowaliśmy, testujemy,
+Maciek: czy mówiąc bardziej fachowo, walidujemy,
+Maciek: na pozostałej jednej części, którą właśnie określamy mianem test albo validation set.
+Maciek: Proces jest powtarzany k razy za każdym razem,
+Maciek: czyli w naszym przypadku 10 razy,
+Maciek: za każdym razem używając innej części danych jako zestawu testowego.
+Maciek: Czyli już widzicie, że tę procedurę można by tak usystematyzować.
+Maciek: Czyli moglibyśmy podzielić sobie,
+Maciek: na 10 części i powiedzieć sobie,
+Maciek: no dobra, to teraz pierwszą potraktujemy jako testową,
+Maciek: a 9 kolejnych jako treningowe.
+Maciek: No i na tych 9 trenujemy i na tej pierwszej testujemy.
+Maciek: Następnie drugą potraktujemy jako testową,
+Maciek: a te pozostałe jako treningowe.
+Maciek: I tak w kółko.
+Maciek: Po co?
+Maciek: Po to, żeby za każdym razem wytrenować model.
+Maciek: I następnie właśnie w trzecim kroku,
+Maciek: po zakończeniu wszystkich iteracji,
+Maciek: czyli tak 10 razy wytrenowaliśmy dany model,
+Maciek: za każdym razem na innym podzbiorze danych trenowaliśmy i testowaliśmy,
+Maciek: uśredniamy wynik iteracji.
+Maciek: Przepraszam, po zakończeniu wszystkich iteracji wyniki,
+Maciek: dokładność, czyli accuracy, F1, precision, recall itd.
+Maciek: są uśredniane, aby uzyskać ostateczną ocenę wydajności modelu.
+Maciek: Bo zwróćcie uwagę na to, że to jak widzicie my wręcz panicznie boimy się,
+Maciek: świecie uczenia maszynowego i w ogóle sztucznej inteligencji,
+Maciek: to stworzyć to wytrenowanie algorytmu czy modelu dokładnie rzecz biorąc,
+Maciek: który nie generalizuje, który overfitował, czyli stał się zbyt,
+Maciek: za bardzo na pamięć nauczył się swoich danych, których użyliśmy w trakcie
+Maciek: trenowania i on nie ma żadnej w sobie inteligencji wręcz.
+Maciek: On nie rozpoznaje żadnych wzorców, nie nauczył się rozpoznawać żadnych wzorców.
+Maciek: I to jest coś z czym bardzo mocno chcemy walczyć.
+Maciek: Dlaczego? Bo pamiętajcie, że my tak naprawdę kontrolę mamy w trakcie trenowania.
+Maciek: To jest nasz świat gdzie my kontrolujemy co wychodzi i jaki model faktycznie wyjdzie na świat.
+Maciek: A później jak już ten model wdrożycie i np.
+Maciek: powiedzmy, że ten model staje się częścią
+Maciek: jakiegoś bardzo poważnego procesu biznesowego, to wy chcecie mieć pewność,
+Maciek: że ten model widząc nowe dane zachowuje się OK.
+Maciek: Że możemy w niego wierzyć i żeby tą wiarę w sobie zbudować,
+Maciek: wiarę do tego modelu potrzebujemy takich technik jak cross-validation.
+Maciek: I cross-validation pomaga zminimalizować ryzyko nadmiernego dopasowania modelu,
+Maciek: czyli właśnie overfitting i daje bardziej wiarygodną ocenę jego wydajności na nowych danych.
+Maciek: Zwróćcie uwagę na to.
+Maciek: W świecie
+Maciek: maszynowego my pożegnaliśmy się z determinizmem, bo my nie wiemy jakie dane wpłyną.
+Maciek: My nie wiemy, więc my przygotowujemy się dzięki właśnie tym technikom jak cross-validation
+Maciek: na te różne nieznane nam scenariusze i przeczytam wam jeszcze raz to zdanie,
+Maciek: bo ono jest bardzo istotne. Cross-validation pomaga zminimalizować ryzyko,
+Maciek: bo my właśnie wchodzimy w świat ryzyk różnego rodzaju, z których musimy po prostu
+Maciek: zdawać sobie sprawę, to jest coś zupełnie normalnego, zminimalizować ryzyko nadmiernego
+Maciek: dopasowania modelu, czyli tego, że przesadziliśmy, że tak mocno szukaliśmy tego
+Maciek: najlepszego modelu tak na siłę w trakcie tego trenowania, że aż po prostu on się na
+Maciek: pamięć wszystkiego nauczył, my jesteśmy super zadowoleni, bo mówimy wow,
+Maciek: niesamowite wyniki on osiągał, przecież on już wszystko umie, ale on nie generalizuje,
+Maciek: czyli on nie potrafi działać w przypadku, kiedy zobaczy nowe dane, których nigdy nie widział.
+Maciek: Prawda?
+Maciek: Więc właśnie minimalizujemy to ryzyko i dajemy wiarygodną, wiarygodną ocenę jego
+Maciek: wydajności na nowych danych, to jest bardzo istotne zdanie.
+Maciek: Zobaczmy jak możemy wpływać czy kontrolować ten cross-validation, który jest
+Maciek: wbudowany w samego PyCareta, on się pojawia przy wielu etapach
+Maciek: trenowania, tunowania itd.
+Maciek: w PyCarecie.
+Maciek: Ja wam po prostu
+Maciek: pokażę, w którym momencie rozpoznać, że macie do czynienia z cross-validation.
+Maciek: Na potrzeby naszego takiego mini przykładu
+Maciek: zbudujemy sobie
+Maciek: model klasyfikujący na dataset związany z SOCami.
+Maciek: Nie będziemy analizować samych danych, nieważne to jest.
+Maciek: Pójdziemy automatem, czyli sobie pobieramy dane a propos SOCów.
+Maciek: Tu widzicie sample, widzimy, że w większości mamy tutaj cechy numeryczne.
+Maciek: Naszym targetem będzie purchase, który ma dwie wartości ch albo mm.
+Maciek: Przyznaję szczerze, że nawet nie wiem co to oznacza.
+Maciek: Nieważne, mamy po prostu binarną klasyfikację, nie musimy tego wiedzieć.
+Maciek: Widzimy jaki jest mniej więcej podział danych znormalizowany, czyli procentowy.
+Maciek: 39% to są mm, 61 ch.
+Maciek: Nie jest to jakoś super istotne z punktu widzenia cross-validation, ale tak tylko sobie wspominamy.
+Maciek: Tworzymy nasz eksperyment, gdzie naszymi danymi wejściowymi są właśnie dane a propos SOCów.
+Maciek: Target to jest kolumna purchase.
+Maciek: Session ID jak zwykle, żeby była reprodukowalność.
+Maciek: No i ustawimy verbose na false, żeby nam
+Maciek: już PyCaret tam nie wsypał tymi wszystkimi tabelkami, logami itd.
+Maciek: I zwróćcie uwagę na to, że jedną z rzeczy, którą teraz możemy zrobić
+Maciek: w ramach tego eksperymentu, to możemy uruchomić jak znane compare models.
+Maciek: Czyli to jest nasze dobrze znane compare models.
+Maciek: Możemy wręcz powiedzieć, że interesuje nas uruchomienie tego
+Maciek: tak, żeby koncentrować się na F1C, bo
+Maciek: domyślnie on optymalizuje pod dokładność, pod accuracy.
+Maciek: Więc uruchomimy to sobie wszystko.
+Maciek: OK.
+Maciek: Budujemy eksperyment.
+Maciek: I teraz zwróćcie uwagę na to, że tu doszedł taki nowy argument FALSE.
+Maciek: Pamiętajcie, to było to nowe słowo kluczowe, które powyżej wprowadziliśmy.
+Maciek: Bo tak naprawdę to, co robi PyCaret pod spodem, to on trenuje każdy model
+Maciek: używając metodologii cross validation.
+Maciek: To, co widzimy tutaj, to są uśrednione wyniki każdego z tych modeli.
+Maciek: I widzicie, fitting five faults.
+Maciek: Czyli on mówi, że teraz ma dotyczenie z takim klasyfikatorem.
+Maciek: O, no dobra.
+Maciek: Jest bardzo szybki, ale widzicie, że on za każdym razem właśnie operuje na tych
+Maciek: foldach i ostatecznie dostajemy jakiś tam model.
+Maciek: Nieważne ten, który wygrał w tej fantastycznej batalii.
+Maciek: Możecie zwrócić uwagę, jakie były te czasy trenowania.
+Maciek: No i oczywiście możemy tutaj zmieniać.
+Maciek: Możemy powiedzieć, no dobra, my nie chcemy jednak pięciu foldów, chcemy 10 foldów.
+Maciek: Tu widzicie, że teraz jest fitting on ten fold.
+Maciek: Czyli na 10 foldach.
+Maciek: No i to jest tak naprawdę tyle.
+Maciek: Jeżeli chodzi o nasz wpływ na
+Maciek: cross validation używany w PyCarecie, to możemy jeszcze kilka rzeczy majstrować przy
+Maciek: kilku rzeczach, ale to grubo wykracza poza
+Maciek: sam ten kurs.
+Maciek: Więc, ale oczywiście zachęcam was do własnej eksploracji.
+Maciek: Ale chciałbym tymczasem wam pokazać jeszcze, gdzie
+Maciek: jesteśmy w stanie wpływać na ten cross validation albo wręcz obcować ten cross
+Maciek: validation, to jest metoda create model. Bo jak pamiętajcie, między innymi z
+Maciek: klastrowania, my jesteśmy w stanie w PyCarecie albo poprosić go o to, żeby on nam
+Maciek: uruchomił tę batalię modeli, które ze sobą nawzajem konkurują i starają się
+Maciek: i staramy się znaleźć najlepszy model ze wszystkich możliwych na danych i na
+Maciek: konfiguracji, którą zdefiniowaliśmy.
+Maciek: Albo możemy powiedzieć, słuchaj,
+Maciek: mnie interesuje konkretny model i teraz te skróty modeli, których możemy użyć
+Maciek: znajdziemy tutaj. I tak samo używając metody models, o
+Maciek: której sobie mówiliśmy w jednym z poprzednich, poprzednich lekcji.
+Maciek: No i używamy sobie random forest, classifier, czyli to jest taki model, który bazuje na tym, że tworzy
+Maciek: zupełnie takie las drzew decyzyjnych, gdzie drzewa decyzyjne,
+Maciek: tak jak gdzieś tam sobie wspominaliśmy, to są takie proste algorytmy, które bazują na
+Maciek: tym, że dane dzielimy sobie na takie poszczególne etapy.
+Maciek: I każde z tych etapów to jest taka decyzja jedna, prawda?
+Maciek: Czy idziemy w lewo, czy idziemy w prawo? W ten sposób, żeby zbudować taki algorytm, który
+Maciek: klasyfikuje, czyli np. mówiąc bardziej po ludzku i idźmy z danymi tytanika, powiemy,
+Maciek: jeżeli,
+Maciek: czy mamy do czynienia z kobietą, tak, nie.
+Maciek: Jeżeli mamy do czynienia z kobietą, czy jej wiek jest poniżej np.
+Maciek: 20 lat, powyżej 20 lat, tak, nie.
+Maciek: No i tak idąc z takimi decyzjami w pewnym momencie dochodzimy do takiego rozgłęzienia,
+Maciek: gdzie mówimy, no to ona na pewno przeżyje, prawda?
+Maciek: No bo wtedy byśmy powiedzieli, że spełnia wszystkie kryteria i w ten sposób możemy
+Maciek: właśnie budować takie rozgłęzienie. No dobra.
+Maciek: Wracamy do cross-validation.
+Maciek: No i zwróćcie uwagę na to, jesteśmy w stanie
+Maciek: uruchomić create model z jakimś konkretnym modelem i to zawsze jesteśmy
+Maciek: w stanie zrobić i to również uruchamia nam cross-validation.
+Maciek: Jednak tym razem widzimy to explicite, prawda?
+Maciek: Widzicie jaki wynik ten model, jakikolwiek by on nie był, osiąga na każdym z foldów, prawda?
+Maciek: Czyli widzimy, że raz osiągnął, popatrzcie, to jest niewiarygodna rzecz, raz osiągnął takie,
+Maciek: albo patrzmy na F1, raz osiągnął 77, prawda?
+Maciek: Prawie.
+Maciek: Raz, no 74, a innym razem 82, prawda?
+Maciek: Więc widzicie, że, że te różnice mogą być naprawdę duże.
+Maciek: Naprawdę duże, bo te różnice sięgają, no po prawie ośmiu punktów procentowych.
+Maciek: No to jest bardzo duże, jeżeli np.
+Maciek: to dotyczy jakichś danych, no nie wiem, bankowych, ubezpieczeń czy zdrowotnych.
+Maciek: Ale właśnie o to chodzi, że, że przyzwyczajajmy się do tego,
+Maciek: do tej rozrzutności niejako, bo i tak i tak my musimy myśleć w kategoriach
+Maciek: średniego zachowania, takiego zachowania na, w możliwe wszystkich sytuacjach.
+Maciek: Bo wiecie, tu się po prostu dobrze dobrały dane i fajnie wyszło, prawda?
+Maciek: Mieliśmy szczęście wręcz.
+Maciek: No i jakbyśmy ten model wyciągnęli, to byśmy powiedzieli, o, ok, super, udało nam się najlepiej.
+Maciek: Ale ktoś by powiedział, no dobra, no ale wiemy też, że są takie sytuacje, gdzie ten
+Maciek: konkretny model, ten Random Forest Classifier, no nie radzi sobie tak dobrze.
+Maciek: Prawda?
+Maciek: No i to, to tutaj widzimy faktycznie, ale to jest tylko tutaj prezentowane dla nas
+Maciek: jako forma, bym powiedział, raczej ciekawostki, żebyśmy zobaczyli, jak
+Maciek: stabilny jest też ten model i widzimy to już średnie.
+Maciek: Widzimy, że jednak ten odchylenie standardowo, no nie jest jakieś ogromne,
+Maciek: więc to jest też dla nas w porządku, że ten model jest stabilny w miarę, że te
+Maciek: skoki jednak aż tak ekstremalne nie są, że to nie są jednak skoki pomiędzy,
+Maciek: powiedzmy, 0,7 a 0,2.
+Maciek: No i tak na koniec taka mini dyskusja.
+Maciek: Nie jest to coś, z czym będziecie mieli często do czynienia, ale warto wiedzieć.
+Maciek: Moglibyście zadać sobie pytanie, no dobra, ale jak wybrać odpowiednią ilość foldów?
+Maciek: Domyślnie PyCaret użyła 10, prawda?
+Maciek: Dobór odpowiedniej liczby foldów cross-validation jest ważnym krokiem w
+Maciek: procesie trenowania modelu, który wpływa na jakość oceny modelu i jego zdolność do
+Maciek: generalizacji, to słowo tutaj chciałbym, żeby wybrzmiało.
+Maciek: No i wpływ liczby foldów na model, no bo właśnie, żeby wybrać liczbę foldów
+Maciek: musimy zadać sobie pytanie, na co to w ogóle wpływa?
+Maciek: Idźmy w jedno ekstremum, zbyt mała liczba foldów.
+Maciek: Poszliśmy w coś takiego jak k równe 2 albo k równe 3.
+Maciek: Może prowadzić do niestabilnych ocen modelu, ponieważ każdy zestaw walidacyjny
+Maciek: będzie zawierał dużą liczbę danych, a treningowy mniejszą.
+Maciek: Zwróćcie uwagę na to, pomyślmy teraz, że mamy k równe 3
+Maciek: i mamy, żeby się łatwiej liczyło, 9000 rekordów.
+Maciek: K równe 3 ma 3000 wierszy.
+Maciek: To wówczas, dzieląc to na trzy równe części, każda część ma 3000 wierszy,
+Maciek: więc zestaw treningowy ma 3000 wierszy, a zestaw, przepraszam, zestaw testowy ma 3000
+Maciek: wierszy, a zestaw treningowy 6000. To znaczy, że jedna trzecia danych nam
+Maciek: ucieka do samego testowania, prawda? Nie jesteśmy w stanie fajnie go wytrenować.
+Maciek: A teraz zwróćmy uwagę na to, żebyśmy mieli zamiast k równe 3, k równe 9.
+Maciek: I dalej będzie 9000 wierszy.
+Maciek: Przy k równym 9 do testowania użyjemy 1000 wierszy, a do trenowania 8000.
+Maciek: Widzicie, jak to się przesuwa.
+Maciek: I to właśnie między innymi dlatego nie możemy aż zaszaleć zbyt małą wartością.
+Maciek: No dobrze, a co jakbyśmy wzięli zbyt dużą ilość foldów?
+Maciek: No wówczas,
+Maciek: chociaż może to dostarczyć bardziej
+Maciek: precyzyjnych wyników, zwiększa koszty obliczeniowe, ponieważ model musi być
+Maciek: wiele razy, a różnice pomiędzy wynikami kolejnych foldów mogą być minimalne.
+Maciek: Czasami wręcz robi się taką, w przypadku kiedy mamy małą ilość danych, robi się tzw.
+Maciek: walidację cross-validation, gdzie zostawiamy sobie do testowania tylko jeden wiersz
+Maciek: dosłownie, a całą resztę używam do tego, żeby trenować.
+Maciek: Ale to już jest ekstremum.
+Maciek: I tak podsumowując,
+Maciek: jak wybieramy liczbę foldów?
+Maciek: Najpierw ze względu na rozmiar zbioru danych.
+Maciek: Jak mamy duże zbiory danych, takie tysiące, dziesiątki tysięcy,
+Maciek: idziemy w piątkę lub dziesiątkę i tyle.
+Maciek: Koniec kropka.
+Maciek: Małe zbiory danych możesz rozważyć większą liczbę foldów lub nawet leave one out.
+Maciek: Leave one out, czyli to o czym wam właśnie powiedziałam przed chwilą,
+Maciek: czyli dosłownie
+Maciek: zostawiamy sobie tylko jednego, jeden przykład do testowania.
+Maciek: Pamiętajmy o tym, że wybierając liczbę foldów wpływamy przede wszystkim na
+Maciek: obciążenie obliczeniowe. My tego może nie czujemy tak bardzo dla tych przykładowych
+Maciek: danych jak JUICE itd., ale zobaczycie w pewnym momencie, jak zaczniecie
+Maciek: rozpatrywać coraz większe i większe zbiory danych, że to trenowanie i te kolejne
+Maciek: sztuczki różnego rodzaju, które są
+Maciek: stosujemy coraz mocniej nam obciążają nasz system.
+Maciek: W pracy zawodowej nie będziecie trenować
+Maciek: modeli na waszych własnych maszynach. Na początku tak oczywiście, bo jest wygodnie,
+Maciek: ale docelowo będziecie na osobnych maszynach, bardzo mocnych maszynach,
+Maciek: komputerach trenować takie modele, żeby po prostu cały proces przyspieszyć.
+Maciek: Na sam koniec, jeżeli chodzi jeszcze o wybór
+Maciek: liczby foldów, większa liczba foldów, czyli k równę 10, więcej, zmniejsza wariancję
+Maciek: wyników między foldami, co prowadzi do bardziej stabilnych ocen, ale właśnie
+Maciek: kosztem zwiększonych obliczeń, bo po prostu większą mamy taką
+Maciek: próbkę, którą sobie generujemy z tych różnych modeli.
+Maciek: Ale teraz wyobraźcie sobie np.
+Maciek: że tutaj każdy z tych modeli byśmy trenowali po stokroć np.
+Maciek: dla k rownę k 100, to byśmy czekali i czekali i czekali.
+Maciek: I my już gubimy korzyści z tego płynące, więc tu trzeba po prostu zoptymalizować
+Maciek: i zbalansować, że tak powiem.
+Maciek: Ostatecznie
+Maciek: idźcie z tym, co jest domyślne.
+Maciek: Fajnie, żebyście rozumieli, że ten cross
+Maciek: validation dla was działa pod spodem magicznie i was chroni przed overfittingiem.
+Maciek: A w przypadku, kiedy będziecie mieli do
+Maciek: czynienia z jakimiś ultra małymi ilościami danych lub ultra już dużymi,
+Maciek: no to pamiętajcie, że zawsze możecie sobie poprzyspieszać rzeczy
+Maciek: szalejąc z argumentem fault.
+SPEAKER_UNKNOWN: I yo, I te haftą, shoppor wyszły sobie tylko, ...
+SPEAKER_UNKNOWN: To jak job dony理.
+SPEAKER_UNKNOWN: Tak!
+SPEAKER_UNKNOWN: Ktoümü, którą taki wolny AU to ja.
+SPEAKER_UNKNOWN: I klei to.

@@ -1,0 +1,29 @@
+Raport ze Spotkania
+
+**Główne Tematy Omówione:**
+- Status przeglądu "trochę rzeczy" (nieokreślonych materiałów/zadań).
+- Reworkowane i wgrane logo.
+
+**Kluczowe Podjęte Decyzje:**
+(Brak informacji w podanym fragmencie transkrypcji.)
+
+**Lista Zadań do Wykonania:**
+- Zadanie: Przejrzenie "trochę rzeczy". Osoba odpowiedzialna: Mówca. Termin: Brak.
+- Zadanie: Zapinanie kilku własnych tematów. Osoba odpowiedzialna: Mówca. Termin: Brak.
+- Zadanie: Przerobienie i wrzucenie logo. Osoba odpowiedzialna: Mówca. Termin: Brak.
+
+**Ważne Działania Następcze lub Kolejne Kroki:**
+*   Przejrzenie (review) "trochę rzeczy", których mówca nie miał jeszcze czasu przejrzeć.
+
+**Najważniejsze Uwagi lub Komentarze od Uczestników:**
+*   Uczestnik nie miał czasu przejrzeć materiałów, ponieważ był zajęty świętami i własnymi tematami.
+*   Uczestnik wgrał/podpiął przerobione logo, co zrobił wczoraj lub przedwczoraj.
+
+
+---
+Wygenerowano: 2025-11-09 12:19:19
+Model LLM: gemini-2.5-flash
+Model Embeddings: infly/inf-retriever-v1-1.5b
+Metoda chunkowania: segmenty 240s z nałożeniem 0s
+Model transkrypcji: large-v3
+Model diarizacji: pyannote/speaker-diarization-3.1

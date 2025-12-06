@@ -1,0 +1,186 @@
+@import "tailwindcss";
+
+/* Existing CSS that should be kept */
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: inherit;
+  text-decoration: inherit;
+}
+a:hover {
+  color: inherit;
+}
+
+/* Zapewnij zawijanie tekstu dla treści generowanych przez backend */
+.transcript-html {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.minutes-html {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.transcript-html pre,
+.minutes-html pre,
+.transcript-html code,
+.minutes-html code {
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+html, body {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100%; /* Ensure html and body take full height */
+}
+
+#root {
+  height: 100%;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+}
+
+/* Dodatkowe style dla UploadPage - możesz przenieść je do App.css lub zachować tutaj */
+
+.tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.tab-button {
+    padding: 10px 15px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-bottom: none;
+    background-color: #eee;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    margin-right: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.tab-button.active {
+    background-color: #fff;
+    border-color: #ddd;
+    border-bottom: 1px solid #fff;
+    color: #0056b3;
+}
+
+.tab-content {
+    display: none;
+    padding-top: 10px;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+#status {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 4px;
+    font-weight: bold;
+    white-space: pre-wrap; /* Ensure line breaks from streamed data are shown */
+}
+
+#status.info { background-color: #e9f7ef; color: #0e5022; }
+#status.error { background-color: #f7ebe9; color: #5a1818; }
+#status.success { background-color: #d4edda; color: #155724; }
+#status.warning { background-color: #fff3cd; color: #856404; }
+
+.advanced-options-toggle {
+    cursor: pointer;
+    padding: 10px;
+    background-color: #e2e6ea;
+    border-radius: 4px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #0056b3;
+    font-weight: bold;
+}
+
+.advanced-options-toggle:hover {
+    background-color: #d1d6db;
+}
+
+.toggle-icon {
+    font-size: 1.2em;
+    transition: transform 0.3s ease;
+}
+
+.toggle-icon.rotated {
+    transform: rotate(180deg);
+}
+
+.prompt-section {
+    border: 1px solid #e0e0e0;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    background-color: #fcfcfc;
+}
+
+.prompt-section input[type="text"],
+.prompt-section textarea {
+    width: calc(100% - 22px); /* Adjust width to account for padding and border */
+    padding: 10px;
+    margin-bottom: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.prompt-section textarea {
+    resize: vertical; /* Allow vertical resizing */
+}
+
+.prompt-section .remove-section-button {
+    width: auto; /* Override 100% width */
+    padding: 5px 10px;
+    font-size: 14px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right; /* Align to the right */
+}
+
+.prompt-section .remove-section-button:hover {
+    background-color: #c82333;
+}

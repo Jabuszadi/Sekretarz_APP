@@ -1,0 +1,8 @@
+SPEAKER_UNKNOWN: znalazłem, nie znalazłem, nie znalazłem
+SPEAKER_UNKNOWN: łączy przyjemne z pożytecznym, mianowicie jest zadanie domowe pod koniec modułu 11.
+SPEAKER_UNKNOWN: I moim zadaniem będzie zrobienie takiego promptu, który na podstawie tego co ty napisałeś.
+SPEAKER_UNKNOWN: i tych materiałów ze strony internetowej. On stworzy odpowiednie opisy do wszystkich tych
+SPEAKER_UNKNOWN: 19 wartości w sześciu właśnie tych poziomach.
+SPEAKER_UNKNOWN: Close
+SPEAKER_UNKNOWN: Plus będą takie ogólne opisy do do każdej z tych wartości, tak jak chciałeś.
+SPEAKER_UNKNOWN: No więc ponieważ mam wzorzec dla niego, no to jest kwestią tylko zrobienia tego.

@@ -1,0 +1,67 @@
+Raport ze Spotkania
+
+**Główne Tematy Omówione:**
+*   Rozwój narzędzia do testowania i monitorowania postępów uczniów, w tym tworzenie testów po każdym dziale do sprawdzania się i archiwizowania wyników.
+*   System raportowania postępów, w tym wysyłanie cotygodniowych raportów (link lub PDF) na maila rodziców/sponsorów, z możliwością podglądu historycznego progresu.
+*   Projektowanie pulpitu do wizualizacji wyników i postępów w nauce.
+*   Struktura i format pytań testowych, w tym użycie grafik/obrazków w pytaniach i odpowiedziach, oraz liczba opcji odpowiedzi.
+
+**Kluczowe Podjęte Decyzje:**
+*   Wprowadzenie cotygodniowego raportu progresu (w formie linku lub PDF-u na maila) dla rodziców/sponsorów.
+*   Wdrożenie testów po każdym dziale, które będą służyć do sprawdzania się uczniów i archiwizowania wyników w celu tworzenia raportów, a nie jako warunek przejścia do kolejnego etapu.
+
+**Lista Zadań do Wykonania:**
+*   **Wysyłanie raportu progresu (link lub PDF) na maila:**
+    *   Osoba odpowiedzialna: Brak informacji.
+    *   Termin: Raz w tygodniu.
+*   **Dodanie możliwości dodawania adresu e-mail sponsora/rodzica do wysyłki raportów:**
+    *   Osoba odpowiedzialna: Brak informacji.
+    *   Termin: Brak informacji.
+*   **Stworzenie pulpitu z widocznym historycznym progressem:**
+    *   Osoba odpowiedzialna: Brak informacji.
+    *   Termin: Brak informacji.
+*   **Tworzenie testów:**
+    *   Osoba odpowiedzialna: Brak informacji.
+    *   Termin: Po każdym dziale.
+*   **Spisywanie i archiwizowanie wyników testów:**
+    *   Osoba odpowiedzialna: Brak informacji.
+    *   Termin: Brak informacji.
+*   **Tworzenie raportów w oparciu o wyniki testów:**
+    *   Osoba odpowiedzialna: Brak informacji.
+    *   Termin: Brak informacji.
+*   **Przygotowanie pytań testowych (częściowo w formie obrazków/grafik):**
+    *   Osoba odpowiedzialna: Mówiący.
+    *   Termin: Brak informacji.
+*   **Wybór narzędzia do przetwarzania danych do bazy danych:**
+    *   Osoba odpowiedzialna: Mówiący.
+    *   Termin: Brak informacji.
+*   **Opracowanie konstrukcji poszczególnych pytań (pytanie w formie obrazka, numer pytania, sześć odpowiedzi, odpowiedzi mogą zawierać minigrafiki):**
+    *   Osoba odpowiedzialna: Brak informacji.
+    *   Termin: Brak informacji.
+*   **Dostarczenie odpowiedzi do pytań testowych:**
+    *   Osoba odpowiedzialna: Mówiący.
+    *   Termin: Brak informacji.
+
+**Ważne Działania Następcze lub Kolejne Kroki:**
+*   Wysyłanie raz w tygodniu raportu progresu (w formie linku lub PDF-u) na maila.
+*   Umożliwienie dodania adresu e-mail sponsora/rodzica, na który będzie wysyłany raport progresu.
+*   Zapewnienie, aby indywidualny link przekierowywał na stronę z podglądem całego raportu progresu z testów.
+*   Spisywanie i archiwizowanie wyników testów, aby na ich podstawie można było tworzyć raporty.
+*   Opracowanie narzędzia, które będzie zawierało testy po każdym dziale.
+*   Dostarczenie pytań i odpowiedzi do testów, w tym ewentualnych grafik.
+*   Zdecydowanie, jakie narzędzie użyć do przetworzenia danych do bazy danych.
+
+**Najważniejsze Uwagi lub Komentarze od Uczestników:**
+*   **Pulpit progresu:** Uczestnik spotkania podkreśla potrzebę stworzenia pulpitu dla uczniów, który pozwoli na śledzenie postępów w poszczególnych działach (np. geometria), porównywanie wyników obecnych z historycznymi oraz ogólny podgląd na to, jak wygląda progres w perspektywie czasowej.
+*   **Raporty progresu dla rodziców/sponsorów:** Kluczową uwagą jest konieczność wysyłania raz w tygodniu raportu progresu (w formie linku lub PDF-u na maila) do rodziców lub sponsorów. Ma to na celu informowanie ich o tym, jak dziecko radzi sobie z testami, ile testów wykonało w danym tygodniu/miesiącu oraz jak wygląda jego progres historyczny (np. porównanie wyników z września do lutego).
+*   **Struktura testów:** Po każdym dziale ma być test, który służy do sprawdzenia się przez ucznia, a jego wyniki mają być archiwizowane i wykorzystywane do tworzenia raportów. Testy te nie będą upoważniały do przejścia dalej, lecz będą narzędziem do samooceny i monitorowania postępów.
+*   **Format pytań testowych:** Pytania testowe będą zawierały grafiki/obrazki (np. figury matematyczne), wyświetlane jako obrazy. Do każdego pytania będzie przypisany numer i prawdopodobnie sześć odpowiedzi do wyboru, klikanych za pomocą "batona". Odpowiedzi również mogą wymagać minigrafik. Uczestnik zastanawia się nad narzędziem do przetwarzania pytań do bazy danych i formą wprowadzania odpowiedzi, aby zminimalizować błędy.
+
+
+---
+Wygenerowano: 2025-11-08 15:50:03
+Model LLM: gemini-2.5-flash
+Model Embeddings: infly/inf-retriever-v1-1.5b
+Metoda chunkowania: segmenty 240s z nałożeniem 0s
+Model transkrypcji: large-v3
+Model diarizacji: pyannote/speaker-diarization-3.1

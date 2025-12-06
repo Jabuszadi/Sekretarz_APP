@@ -1,0 +1,46 @@
+Raport ze Spotkania
+
+**Główne Tematy Omówione:**
+*   Rozwój narzędzia/systemu do testowania wiedzy uczniów po każdym dziale.
+*   Śledzenie i archiwizowanie wyników testów uczniów w perspektywie historycznej.
+*   Tworzenie i wysyłanie cotygodniowych raportów progresu (PDF/link na maila) dla rodziców/sponsorów.
+*   Projektowanie formatu pytań testowych (obrazki, tekst, grafiki w odpowiedziach) oraz liczby i sposobu wyboru odpowiedzi.
+
+**Kluczowe Podjęte Decyzje:**
+(Brak informacji w podanym fragmencie transkrypcji.)
+
+**Lista Zadań do Wykonania:**
+- Stworzenie pulpitu, na którym widoczny będzie progres. (Osoba odpowiedzialna: Brak informacji; Termin: Brak informacji)
+- Wysyłanie raportu progresu (link lub PDF) na maila. (Osoba odpowiedzialna: Brak informacji; Termin: Raz w tygodniu)
+- Dodanie możliwości wprowadzania adresu mailowego dla sponsora/rodzica w celu wysyłki raportów. (Osoba odpowiedzialna: Brak informacji; Termin: Brak informacji)
+- Implementacja testów po każdym dziale. (Osoba odpowiedzialna: Brak informacji; Termin: Po każdym dziale)
+- Spisywanie i archiwizowanie wyników testów. (Osoba odpowiedzialna: Brak informacji; Termin: Brak informacji)
+- Tworzenie raportów w oparciu o wyniki testów. (Osoba odpowiedzialna: Brak informacji; Termin: Brak informacji)
+- Przygotowanie pytań testowych, w tym grafik. (Osoba odpowiedzialna: Mówca; Termin: Brak informacji)
+- Wybór narzędzia do przetworzenia danych do bazy danych. (Osoba odpowiedzialna: Mówca; Termin: Brak informacji)
+- Dostarczenie odpowiedzi do pytań testowych. (Osoba odpowiedzialna: Mówca; Termin: Brak informacji)
+
+**Ważne Działania Następcze lub Kolejne Kroki:**
+*   Wysyłanie raz w tygodniu raportu progresu (w formie linku lub PDF-u) na maila rodzicom/sponsorom.
+*   Umożliwienie dodawania adresu e-mail sponsora/rodzica, na który taki raport będzie wysyłany.
+*   Stworzenie pulpitu, na którym widoczny będzie progres ucznia w perspektywie historycznej (jak radził sobie na początku i jak radzi sobie obecnie).
+*   Spisywanie i archiwizowanie wyników testów, aby na ich podstawie można było tworzyć raporty.
+*   Dostarczenie odpowiedzi do pytań testowych (przez mówiącego).
+
+**Najważniejsze Uwagi lub Komentarze od Uczestników:**
+*   Propozycja stworzenia narzędzia do śledzenia postępów uczniów w różnych działach (np. geometria), z możliwością podglądu historycznych wyników.
+*   Kluczowe jest generowanie cotygodniowych raportów progresu (w formie linku lub PDF-u na maila) dla rodziców/sponsorów, aby mogli monitorować osiągnięcia dziecka w testach.
+*   Raporty mają pokazywać, jak dziecko radzi sobie z testami, ile testów wykonało w danym tygodniu/miesiącu oraz jak wygląda progres w perspektywie historycznej (np. porównanie wyników z września i lutego).
+*   System ma zawierać testy po każdym dziale, służące do samokontroli, a ich wyniki będą archiwizowane w celu tworzenia raportów.
+*   Pytania testowe będą zawierać grafiki/obrazki (np. figury matematyczne) i prawdopodobnie sześć odpowiedzi wielokrotnego wyboru, również z możliwymi minigrafikami.
+*   Wyrażono obawę, że ręczne wprowadzanie odpowiedzi może prowadzić do większej liczby błędów.
+*   Zadano pytania dotyczące formatu pytań testowych (skany czy czysty tekst) oraz narzędzia do przetwarzania danych do bazy danych.
+
+
+---
+Wygenerowano: 2025-11-11 18:43:00
+Model LLM: gemini-2.5-flash
+Model Embeddings: infly/inf-retriever-v1-1.5b
+Metoda chunkowania: segmenty 240s z nałożeniem 0s
+Model transkrypcji: large-v3
+Model diarizacji: pyannote/speaker-diarization-3.1

@@ -1,0 +1,34 @@
+Raport ze Spotkania
+
+**Główne Tematy Omówione:**
+*   Znaczenie i cel cross-validation w uczeniu maszynowym, w tym minimalizowanie ryzyka nadmiernego dopasowania modelu (overfitting) i zapewnienie wiarygodnej oceny wydajności na nowych danych.
+*   Wyjaśnienie pojęcia overfittingu (nadmiernego dopasowania modelu).
+*   Praktyczne zastosowanie i kontrola cross-validation w bibliotece PyCaret, w tym użycie funkcji `Compare Models` i `createModel` oraz argumentu `folds`.
+*   Dyskusja na temat wyboru odpowiedniej liczby foldów (k) w cross-validation, uwzględniająca wpływ na stabilność ocen, koszty obliczeniowe oraz rozmiar zbioru danych.
+*   Szczegółowe omówienie procesu K-fold cross-validation, w tym podziału danych, trenowania i testowania na kolejnych foldach oraz uśredniania wyników.
+*   Znaczenie generalizacji modelu i walka z algorytmami, które nie generalizują.
+
+**Kluczowe Podjęte Decyzje:**
+(Brak informacji w podanym fragmencie transkrypcji.)
+
+**Lista Zadań do Wykonania:**
+(Brak informacji w podanym fragmencie transkrypcji.)
+
+**Ważne Działania Następcze lub Kolejne Kroki:**
+*   Własna eksploracja możliwości wpływania na cross-validation w PyCarecie.
+*   Rozważenie, jak wybrać odpowiednią ilość foldów w cross-validation, biorąc pod uwagę rozmiar zbioru danych (dla dużych zbiorów 5 lub 10, dla małych większa liczba foldów lub leave one out).
+*   Pamiętanie, że w pracy zawodowej modele będą trenowane na osobnych, mocnych maszynach, a nie na własnych komputerach, aby przyspieszyć proces.
+*   Trzymanie się domyślnych ustawień cross-validation, rozumiejąc jego działanie ochronne przed overfittingiem.
+*   W przypadku ultra małych lub ultra dużych ilości danych, przyspieszanie procesu poprzez manipulację argumentem `fault`.
+
+**Najważniejsze Uwagi lub Komentarze od Uczestników:**
+(Brak informacji w podanym fragmencie transkrypcji.)
+
+
+---
+Wygenerowano: 2025-11-29 13:05:49
+Model LLM: gemini-2.5-flash
+Model Embeddings: infly/inf-retriever-v1-1.5b
+Metoda chunkowania: segmenty 240s z nałożeniem 0s
+Model transkrypcji: AssemblyAI – Best
+Model diarizacji: Modal remote diarization

@@ -1,0 +1,28 @@
+Raport ze Spotkania
+
+**Główne Tematy Omówione:**
+(Brak informacji w podanym fragmencie transkrypcji.)
+
+**Kluczowe Podjęte Decyzje:**
+(Brak informacji w podanym fragmencie transkrypcji.)
+
+**Lista Zadań do Wykonania:**
+- Przejrzeć coś: Osoba odpowiedzialna: Mówiący. Termin: Brak.
+- Zapinać kilka tematów swoich: Osoba odpowiedzialna: Mówiący. Termin: Brak.
+- Przerobić logo: Osoba odpowiedzialna: Mówiący. Termin: Brak.
+- Wrzucić/podpiąć logo: Osoba odpowiedzialna: Mówiący. Termin: Wczoraj lub przedwczoraj.
+
+**Ważne Działania Następcze lub Kolejne Kroki:**
+*   Przejrzenie czegoś (czego mówiący nie miał jeszcze czasu zrobić).
+
+**Najważniejsze Uwagi lub Komentarze od Uczestników:**
+(Brak informacji w podanym fragmencie transkrypcji.)
+
+
+---
+Wygenerowano: 2025-11-06 23:01:00
+Model LLM: gemini-2.5-flash
+Model Embeddings: infly/inf-retriever-v1-1.5b
+Metoda chunkowania: segmenty 240s z nałożeniem 0s
+Model transkrypcji: large-v3
+Model diarizacji: pyannote/speaker-diarization-3.1

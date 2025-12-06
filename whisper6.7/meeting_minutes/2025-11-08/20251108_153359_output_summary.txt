@@ -1,0 +1,57 @@
+Raport ze Spotkania
+
+**Główne Tematy Omówione:**
+*   Śledzenie postępów uczniów w nauce, w tym historyczny podgląd wyników z testów z różnych działów (np. geometria).
+*   Tworzenie i wysyłanie cotygodniowych raportów progresu (w formie linku lub PDF-u) na maile rodziców/sponsorów, aby mogli monitorować osiągnięcia dziecka.
+*   Projektowanie testów po każdym dziale, które mają służyć do sprawdzania wiedzy ucznia i archiwizowania wyników.
+*   Szczegóły dotyczące konstrukcji pytań testowych: forma (obrazki, tekst, grafiki w odpowiedziach), liczba odpowiedzi (sześć zamiast czterech).
+*   Dyskusja o narzędziach do przetwarzania pytań i odpowiedzi do bazy danych.
+
+**Kluczowe Podjęte Decyzje:**
+(Brak informacji w podanym fragmencie transkrypcji.)
+
+**Lista Zadań do Wykonania:**
+*   **Spisanie dokładnych danych dotyczących wyników (jednorazowych i historycznych) do wyświetlenia na pulpicie ucznia:**
+    *   Osoba odpowiedzialna: Mówiący (jako samokrytyka "nie spisałem sobie dokładnie tego wszystkiego, a powinienem").
+    *   Termin: Brak.
+*   **Wysyłanie raportu progresu (w formie linku lub PDF-u) na maila:**
+    *   Osoba odpowiedzialna: Niewymieniona.
+    *   Termin: Raz w tygodniu.
+*   **Umożliwienie dodania adresu e-mail sponsora/rodzica do wysyłki raportu progresu:**
+    *   Osoba odpowiedzialna: Niewymieniona.
+    *   Termin: Brak.
+*   **Przygotowanie pytań testowych (w tym grafik):**
+    *   Osoba odpowiedzialna: Mówiący.
+    *   Termin: Brak.
+*   **Wybór narzędzia do przetworzenia pytań testowych do bazy danych:**
+    *   Osoba odpowiedzialna: Mówiący.
+    *   Termin: Brak.
+*   **Dostarczenie odpowiedzi do pytań testowych (w tym potencjalnych minigrafik):**
+    *   Osoba odpowiedzialna: Mówiący.
+    *   Termin: Brak.
+
+**Ważne Działania Następcze lub Kolejne Kroki:**
+*   Wysyłanie raz w tygodniu raportu progresu (w formie linku lub PDF-u) na maila.
+*   Umożliwienie dodania adresu e-mail sponsora/rodzica, na który będzie wysyłany raport progresu.
+*   Stworzenie strony internetowej, na którą przekieruje indywidualny link, umożliwiając podgląd całego raportu progresu.
+*   Zapewnienie, aby wyniki testów były spisywane i archiwizowane, a następnie wykorzystywane do tworzenia raportów.
+*   Zbadanie i wybór narzędzia do przetwarzania danych do bazy danych.
+*   Określenie konstrukcji poszczególnych pytań testowych, w tym formatu (obrazek, tekst) i liczby odpowiedzi.
+*   Dostarczenie odpowiedzi do pytań testowych.
+
+**Najważniejsze Uwagi lub Komentarze od Uczestników:**
+*   Uczestnik spotkania (główny mówca) przedstawił wizję narzędzia do monitorowania postępów uczniów, które ma zawierać:
+    *   Pulpit dla ucznia pokazujący bieżące i historyczne wyniki z poszczególnych działów (np. geometria).
+    *   Cotygodniowe raporty progresu wysyłane na maila rodzicom/sponsorom (w formie linku lub PDF-u), zawierające podgląd na to, jak dziecko radzi sobie z testami, ile testów wykonało w danym tygodniu/miesiącu oraz jak wygląda progres w perspektywie historycznej (np. wrzesień vs. luty).
+    *   Testy po każdym dziale służące do samokontroli ucznia, których wyniki będą archiwizowane i wykorzystywane do tworzenia raportów.
+*   Pytanie od innego uczestnika dotyczyło formy pytań testowych – czy będą to skany, czy czysty tekst.
+*   W odpowiedzi na to pytanie, główny mówca wyjaśnił, że pytania testowe będą zawierały grafiki/obrazki (np. figury matematyczne), a także, że prawdopodobnie będzie sześć odpowiedzi do wyboru (zamiast klasycznych czterech), które mogą również zawierać minigrafiki.
+
+
+---
+Wygenerowano: 2025-11-08 15:34:52
+Model LLM: gemini-2.5-flash
+Model Embeddings: infly/inf-retriever-v1-1.5b
+Metoda chunkowania: segmenty 240s z nałożeniem 0s
+Model transkrypcji: large-v3
+Model diarizacji: pyannote/speaker-diarization-3.1

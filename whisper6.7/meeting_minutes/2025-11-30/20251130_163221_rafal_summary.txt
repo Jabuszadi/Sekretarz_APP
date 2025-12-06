@@ -1,0 +1,32 @@
+Raport ze Spotkania
+
+**Główne Tematy Omówione:**
+- Zadanie domowe z modułu 11.
+- Tworzenie promptu do generowania opisów 19 wartości w sześciu poziomach.
+- Wykorzystanie istniejących materiałów pisanych i ze strony internetowej jako podstawy dla promptu.
+
+**Kluczowe Podjęte Decyzje:**
+(Brak informacji w podanym fragmencie transkrypcji.)
+
+**Lista Zadań do Wykonania:**
+- Zadanie: Zrobienie promptu, który na podstawie tekstu napisanego przez drugą osobę oraz materiałów ze strony internetowej, stworzy odpowiednie opisy do 19 wartości w sześciu poziomach.
+- Osoba odpowiedzialna: Mówca.
+- Termin: Brak.
+
+**Ważne Działania Następcze lub Kolejne Kroki:**
+- Zrobienie promptu, który na podstawie dostarczonych materiałów (tekstu i materiałów ze strony internetowej) stworzy odpowiednie opisy do 19 wartości w sześciu poziomach.
+
+**Najważniejsze Uwagi lub Komentarze od Uczestników:**
+- Uczestnik ma zadanie domowe z modułu 11, polegające na stworzeniu promptu.
+- Prompt ma na podstawie materiałów napisanych przez drugą osobę oraz treści ze strony internetowej, stworzyć opisy do 19 wartości w sześciu poziomach.
+- Opisy mają być ogólne dla każdej wartości, zgodnie z wcześniejszym życzeniem.
+- Uczestnik uważa, że posiadanie wzorca ułatwi wykonanie zadania.
+
+
+---
+Wygenerowano: 2025-11-30 16:33:26
+Model LLM: gemini-2.5-flash
+Model Embeddings: infly/inf-retriever-v1-1.5b
+Metoda chunkowania: segmenty 240s z nałożeniem 0s
+Model transkrypcji: Gemini 2.5 Flash
+Model diarizacji: Modal remote diarization

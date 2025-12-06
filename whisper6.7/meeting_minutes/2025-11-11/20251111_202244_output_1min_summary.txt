@@ -1,0 +1,28 @@
+Raport ze Spotkania
+
+**Data i czas::**
+(Brak informacji w podanym fragmencie transkrypcji.)
+
+**Uczestnicy::**
+(Brak informacji w podanym fragmencie transkrypcji.)
+
+**Cele spotkania::**
+(Brak informacji w podanym fragmencie transkrypcji.)
+
+**Omówione tematy::**
+(Brak informacji w podanym fragmencie transkrypcji.)
+
+**Decyzje podjęte podczas spotkania:**
+(Brak informacji w podanym fragmencie transkrypcji.)
+
+**Przydział zadań i terminy::**
+(Brak informacji w podanym fragmencie transkrypcji.)
+
+
+---
+Wygenerowano: 2025-11-11 20:23:36
+Model LLM: gemini-2.5-flash
+Model Embeddings: infly/inf-retriever-v1-1.5b
+Metoda chunkowania: segmenty 240s z nałożeniem 0s
+Model transkrypcji: large-v3
+Model diarizacji: pyannote/speaker-diarization-3.1

@@ -1,0 +1,68 @@
+Raport ze Spotkania
+
+**Główne Tematy Omówione:**
+*   Śledzenie i wizualizacja postępów uczniów w nauce (np. w geometrii) na przestrzeni czasu, z możliwością podglądu historycznego.
+*   Tworzenie narzędzia do testów po każdym dziale, które archiwizuje wyniki i na ich podstawie generuje raporty progresu.
+*   Automatyczne wysyłanie cotygodniowych raportów progresu (link lub PDF) na maila rodziców/sponsorów, aby informować ich o wynikach dziecka.
+*   Dyskusja na temat formatu pytań testowych: czy będą to skany/obrazki (np. tekst, figury matematyczne), ile będzie opcji odpowiedzi (sześć zamiast czterech), oraz jak będą wyglądały odpowiedzi (np. z grafiką, klikalne "batony").
+
+**Kluczowe Podjęte Decyzje:**
+*   Wysyłanie raz w tygodniu raportu progresu (w formie linku lub PDF-u) na maila rodziców/sponsorów, z możliwością dodania adresu e-mail, na który taki raport będzie wysyłany.
+*   Wprowadzenie testów po każdym dziale, które będą służyć do samooceny ucznia, a ich wyniki będą spisywane i archiwizowane w celu tworzenia raportów progresu.
+*   Pytania testowe będą wyświetlane w formie obrazka, z sześcioma odpowiedziami (prawdopodobnie z minigrafikami przy odpowiedziach).
+
+**Lista Zadań do Wykonania:**
+- Stworzenie pulpitu, na którym widoczny jest progres historyczny i bieżący.
+    - Osoba odpowiedzialna: Brak informacji.
+    - Termin: Brak.
+- Wysyłanie raportu progresu (link lub PDF) na maila.
+    - Osoba odpowiedzialna: Brak informacji.
+    - Termin: Raz w tygodniu.
+- Umożliwienie dodania adresu e-mail, na który będzie wysyłany raport progresu (w postaci linka do strony z podglądem).
+    - Osoba odpowiedzialna: Brak informacji.
+    - Termin: Brak.
+- Spisywanie i archiwizowanie wyników testów.
+    - Osoba odpowiedzialna: Brak informacji.
+    - Termin: Brak.
+- Tworzenie raportów w oparciu o wyniki testów.
+    - Osoba odpowiedzialna: Brak informacji.
+    - Termin: Brak.
+- Dostarczenie odpowiedzi (do pytań testowych).
+    - Osoba odpowiedzialna: Mówca ("ja").
+    - Termin: Brak.
+- Przygotowanie (w tym określenie narzędzi) do przetworzenia danych do bazy danych.
+    - Osoba odpowiedzialna: Mówca ("ja").
+    - Termin: Brak.
+
+**Ważne Działania Następcze lub Kolejne Kroki:**
+*   Stworzenie pulpitu, na którym widoczny będzie progres ucznia (historyczny i bieżący) z każdego działu.
+*   Wysyłanie raz w tygodniu raportu progresu (link lub PDF) na maila.
+*   Możliwość dodania dodatkowego adresu e-mail (np. rodzica/sponsora), na który będzie wysyłany raport progresu.
+*   Zapewnienie, że po każdym dziale będzie test, a jego wyniki będą spisywane i archiwizowane.
+*   Na podstawie archiwizowanych wyników ma być możliwość tworzenia raportów.
+*   Dostarczenie odpowiedzi do pytań testowych przez mówiącego.
+*   Sprawdzenie i wybór narzędzi do przetwarzania treści pytań i odpowiedzi (w tym grafik) do bazy danych.
+
+**Najważniejsze Uwagi lub Komentarze od Uczestników:**
+*   **Raportowanie postępów ucznia:**
+    *   Uczeń powinien mieć pulpit z widocznym historycznym postępem w poszczególnych działach (np. geometria), porównując wyniki początkowe z obecnymi.
+    *   Po każdym dziale powinien być test do samooceny, którego wyniki będą archiwizowane i posłużą do tworzenia raportów.
+*   **Raporty progresu dla rodziców/sponsorów:**
+    *   Raz w tygodniu powinien być wysyłany na maila raport progresu (link lub PDF) do rodzica/sponsora.
+    *   Raport powinien zawierać podgląd na to, jak dziecko radzi sobie z testami, ile testów wykonało w danym tygodniu/miesiącu oraz historyczny progres (np. wrzesień vs. luty/marzec).
+    *   Możliwość dodania adresu e-mail, na który taki raport będzie wysyłany.
+*   **Format pytań testowych:**
+    *   Pytania będą prawdopodobnie w formie obrazków/grafik (skanów), zawierających tekst lub figury (np. z matematyki).
+    *   Każde pytanie będzie miało swój numer.
+    *   Prawdopodobnie będzie sześć odpowiedzi do wyboru (zamiast klasycznych czterech), wybieranych kliknięciem.
+    *   Odpowiedzi również mogą wymagać minigrafik.
+    *   Istnieje niepewność co do sposobu wprowadzania odpowiedzi (wpisywanie tekstu vs. wybór), z obawą o większą liczbę błędów przy wprowadzaniu.
+
+
+---
+Wygenerowano: 2025-11-29 12:44:56
+Model LLM: gemini-2.5-flash
+Model Embeddings: infly/inf-retriever-v1-1.5b
+Metoda chunkowania: segmenty 240s z nałożeniem 0s
+Model transkrypcji: AssemblyAI – Nano
+Model diarizacji: Modal remote diarization

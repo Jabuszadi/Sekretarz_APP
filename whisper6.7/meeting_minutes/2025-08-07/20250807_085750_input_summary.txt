@@ -1,0 +1,92 @@
+Raport ze Spotkania
+
+**Tytuł lekcji / modułu:**
+(Brak informacji w podanym fragmencie transkrypcji.)
+
+**Cel lekcji / Czego uczestnik się nauczy:**
+*   Zrozumienie problemu nadmiernego dopasowania modelu (overfitting) i jego negatywnego wpływu na zdolność modelu do generalizacji na nowych danych.
+*   Poznanie techniki cross-validation jako narzędzia do minimalizowania ryzyka overfittingu i uzyskiwania bardziej wiarygodnej oceny wydajności modelu na nieznanych danych.
+*   Zbudowanie wiary w model poprzez stosowanie technik takich jak cross-validation, które przygotowują model na różne nieznane scenariusze.
+*   Zrozumienie, jak cross-validation jest wbudowane i działa pod spodem w PyCarecie (np. w `compare_models` i `create_model`).
+*   Nauczenie się, jak wpływać na cross-validation w PyCarecie, np. poprzez zmianę liczby foldów.
+*   Poznanie definicji i szczegółowego procesu k-fold cross-validation (podział danych na foldy, iteracyjne trenowanie i testowanie, uśrednianie wyników).
+*   Zrozumienie wpływu liczby foldów na ocenę modelu (stabilność, koszty obliczeniowe, wykorzystanie danych) i kiedy rozważyć zmianę domyślnej liczby foldów.
+
+**Najważniejsze zagadnienia:**
+*   **Overfitting (nadmierne dopasowanie modelu):** Ryzyko, z którym należy walczyć; model uczy się danych na pamięć i nie generalizuje na nowe dane.
+*   **Generalizacja:** Zdolność modelu do poprawnego działania na nowych, nieznanych danych.
+*   **Cross-validation (walidacja krzyżowa):** Kluczowa technika oceny wydajności modelu, minimalizująca ryzyko overfittingu i zapewniająca wiarygodną ocenę na nowych danych.
+*   **Folds (foldy):** Części, na które dzielony jest zbiór danych w cross-validation (np. 5 lub 10).
+*   **Train set (zestaw treningowy) i Test/Validation set (zestaw testowy/walidacyjny):** Podzbiory danych używane odpowiednio do trenowania i testowania/walidacji modelu w każdej iteracji cross-validation.
+*   **Proces cross-validation:** Podział danych na k foldów, trenowanie modelu na k-1 foldach i testowanie na pozostałym jednym, powtarzane k razy, a następnie uśrednianie wyników.
+*   **PyCaret:** Biblioteka/narzędzie, w którym cross-validation jest wbudowane i używane domyślnie podczas trenowania modeli.
+*   **Funkcje PyCareta:** `compare models` i `create model`, które wykorzystują cross-validation.
+*   **Klasyfikacja binarna:** Typ problemu uczenia maszynowego, na którym demonstrowano przykład.
+*   **Random Forest Classifier:** Przykład konkretnego modelu uczenia maszynowego, który bazuje na drzewach decyzyjnych.
+*   **Drzewa decyzyjne:** Proste algorytmy bazujące na sekwencji decyzji do klasyfikacji danych.
+*   **Metryki oceny modelu:** Takie jak accuracy, F1, precision, recall, które są uśredniane po zakończeniu wszystkich iteracji cross-validation.
+*   **Wpływ liczby foldów:** Zbyt mała liczba foldów może prowadzić do niestabilnych ocen, zbyt duża zwiększa koszty obliczeniowe; zalecane wartości to 5 lub 10 dla dużych zbiorów danych.
+*   **Leave-one-out cross-validation:** Ekstremalny przypadek cross-validation dla małych zbiorów danych, gdzie do testowania zostawia się tylko jeden wiersz.
+*   **Obciążenie obliczeniowe:** Ważny czynnik przy wyborze liczby foldów, szczególnie dla dużych zbiorów danych.
+
+**Definicje i pojęcia*:**
+*   **Overfitting (nadmierne dopasowanie modelu)**: Sytuacja, w której model zbyt mocno nauczył się na pamięć danych użytych do trenowania, przez co nie generalizuje, czyli nie potrafi działać poprawnie, gdy zobaczy nowe dane, których nigdy wcześniej nie widział. Model nie rozpoznaje wzorców, a jedynie "zapamiętał" dane treningowe.
+*   **Cross-validation**: Technika używana do oceny wydajności modelu, polegająca na podzieleniu zbioru danych na kilka części (folds). Model jest trenowany na jednej części danych (train set) i testowany na innej (test/validation set). Proces ten jest powtarzany kilkakrotnie, a wyniki są następnie uśredniane, aby uzyskać stabilną i wiarygodną ocenę wydajności modelu na nowych danych, minimalizując ryzyko nadmiernego dopasowania.
+*   **Folds**: Części, na które dzielony jest zbiór danych w technice cross-validation.
+*   **Train set**: Zestaw danych używany do trenowania modelu w ramach cross-validation, składający się z k-1 części danych.
+*   **Test set / Validation set**: Pozostała jedna część danych, używana do testowania/walidacji wytrenowanego modelu w ramach cross-validation.
+*   **Generalizacja (zdolność do generalizacji)**: Zdolność modelu do poprawnego działania w przypadku, gdy zobaczy nowe dane, których nigdy nie widział. Jest to przeciwieństwo overfittingu.
+*   **Random Forest Classifier**: Model, który bazuje na tworzeniu lasu drzew decyzyjnych. Drzewa decyzyjne to proste algorytmy, które dzielą dane na poszczególne etapy, gdzie każdy etap to decyzja (np. "czy idziemy w lewo, czy w prawo?").
+*   **Leave one out (cross-validation)**: Ekstremalna forma walidacji krzyżowej, stosowana zazwyczaj przy małej ilości danych, gdzie do testowania zostawia się dosłownie jeden wiersz, a całą resztę danych używa się do trenowania.
+
+**Ćwiczenia, quizy lub aktywności interaktywne:**
+*   Problem nadmiernego dopasowania (overfitting) modeli uczenia maszynowego i potrzeba jego minimalizacji.
+*   Technikę cross-validation jako metodę minimalizującą ryzyko overfittingu i zapewniającą wiarygodną ocenę wydajności modelu na nowych danych.
+*   Szczegółowy proces cross-validation: podział danych na "folds" (części), iteracyjne trenowanie na podzbiorach treningowych i testowanie na podzbiorach walidacyjnych, a następnie uśrednianie wyników.
+*   Sposoby kontroli i wykorzystania cross-validation w bibliotece PyCaret (np. w funkcjach `compare_models` i `create_model`).
+*   Wpływ liczby foldów na stabilność oceny modelu, koszty obliczeniowe oraz zdolność modelu do generalizacji, z uwzględnieniem rozmiaru zbioru danych.
+*   Przykład zastosowania na zbiorze danych dotyczących SOCów i krótki opis modelu Random Forest Classifier.
+
+**Przykłady użycia / case study:**
+*   **Model staje się częścią bardzo poważnego procesu biznesowego:** Scenariusz, w którym kluczowe jest, aby model widząc nowe dane, zachowywał się poprawnie i był wiarygodny.
+*   **Budowa modelu klasyfikującego na dataset związany z SOCami:** Praktyczny mini-przykład użyty w PyCarecie, gdzie celem jest przewidzenie wartości 'purchase' (ch lub mm) na podstawie cech numerycznych.
+*   **Dane z Titanica:** Użyte do wyjaśnienia działania drzew decyzyjnych (np. klasyfikacja przeżycia na podstawie płci i wieku).
+*   **Dane bankowe, ubezpieczeniowe czy zdrowotne:** Przykłady, gdzie nawet niewielkie różnice w wynikach modelu (np. 8 punktów procentowych F1) są bardzo istotne.
+*   **Wybór liczby foldów w zależności od rozmiaru zbioru danych:**
+    *   Dla dużych zbiorów danych (tysiące, dziesiątki tysięcy rekordów) zaleca się 5 lub 10 foldów.
+    *   Dla małych zbiorów danych można rozważyć większą liczbę foldów lub technikę "leave one out" (pozostawienie tylko jednego wiersza do testowania, reszta do trenowania).
+*   **Trenowanie modeli w pracy zawodowej:** Wspomniano, że docelowo modele trenuje się na osobnych, bardzo mocnych maszynach, a nie na własnych komputerach, aby przyspieszyć proces.
+
+**Notatki dodatkowe lub wskazówki od prowadzącego:**
+*   **Cytaty:**
+    *   "Cross-validation pomaga zminimalizować ryzyko nadmiernego dopasowania modelu, czyli właśnie overfitting i daje bardziej wiarygodną ocenę jego wydajności na nowych danych."
+    *   "Cross-validation to technika używana do oceny wydajności modelu, która polega na podzieleniu zbioru danych na kilka części. I tu kolejne słowo kluczowe dla Was wchodzi, tak zwanych folds. Te właśnie części nazywają się takimi foldami, folds. Model jest trenowany na jednej części danych, train set, i testowany na innej. A proces ten jest powtarzany kilkakrotnie. Kilkakrotnie. Wyniki są następnie uśredniane, aby uzyskać stabilną ocenę wydajności modelu."
+    *   "Model jest trenowany na k-1 częściach danych. Czyli w naszym przypadku na 9 częściach danych. I to określamy mianem train setu, czyli zestawu danych do trenowania. Czyli podzieliliśmy dane na 10 równych części. Wydzieliliśmy na bok 9 z nich losowo. I w tym momencie na tych 9 częściach danych, trenujemy model. I następnie to co wytrenowaliśmy, testujemy, czy mówiąc bardziej fachowo, walidujemy, na pozostałej jednej części, którą właśnie określamy mianem test albo validation set. Proces jest powtarzany k razy za każdym razem, czyli w naszym przypadku 10 razy, za każdym razem używając innej części danych jako zestawu testowego."
+    *   "Po zakończeniu wszystkich iteracji wyniki, dokładność, czyli accuracy, F1, precision, recall itd. są uśredniane, aby uzyskać ostateczną ocenę wydajności modelu."
+
+*   **Rekomendacje:**
+    *   "Pamiętajcie, że my tak naprawdę kontrolę mamy w trakcie trenowania."
+    *   "Wy chcecie mieć pewność, że ten model widząc nowe dane zachowuje się OK. Że możemy w niego wierzyć i żeby tą wiarę w sobie zbudować, wiarę do tego modelu potrzebujemy takich technik jak cross-validation."
+    *   "W świecie maszynowego my pożegnaliśmy się z determinizmem, bo my nie wiemy jakie dane wpłyną. My nie wiemy, więc my przygotowujemy się dzięki właśnie tym technikom jak cross-validation na te różne nieznane nam scenariusze."
+    *   "Zachęcam was do własnej eksploracji."
+    *   "W najczęściej stosowanej metodzie, tak by the way, k fold cross-validation, k zazwyczaj wynosi 5 lub 10. To są w ogóle takie zdrowe wartości dla ilości tych podzbiorów, na które dzielimy nasz zbiór danych."
+    *   "Przyzwyczajajmy się do tego, do tej rozrzutności niejako, bo i tak i tak my musimy myśleć w kategoriach średniego zachowania, takiego zachowania na, w możliwe wszystkich sytuacjach."
+    *   "Jak mamy duże zbiory danych, takie tysiące, dziesiątki tysięcy, idziemy w piątkę lub dziesiątkę i tyle. Koniec kropka."
+    *   "Małe zbiory danych możesz rozważyć większą liczbę foldów lub nawet leave one out."
+    *   "Pamiętajmy o tym, że wybierając liczbę foldów wpływamy przede wszystkim na obciążenie obliczeniowe."
+    *   "W pracy zawodowej nie będziecie trenować modeli na waszych własnych maszynach. Na początku tak oczywiście, bo jest wygodnie, ale docelowo będziecie na osobnych maszynach, bardzo mocnych maszynach, komputerach trenować takie modele, żeby po prostu cały proces przyspieszyć."
+    *   "Ostatecznie idźcie z tym, co jest domyślne."
+    *   "Fajnie, żebyście rozumieli, że ten cross validation dla was działa pod spodem magicznie i was chroni przed overfittingiem."
+    *   "A w przypadku, kiedy będziecie mieli do czynienia z jakimiś ultra małymi ilościami danych lub ultra już dużymi, no to pamiętajcie, że zawsze możecie sobie poprzyspieszać rzeczy szalejąc z argumentem fault."
+
+*   **Linki:**
+    *   (Brak informacji w podanym fragmencie transkrypcji.)
+
+
+---
+Wygenerowano: 2025-08-07 08:59:11
+Model LLM: gemini-2.5-flash
+Model Embeddings: infly/inf-retriever-v1-1.5b
+Metoda chunkowania: segmenty 240s z nałożeniem 0s
+Model transkrypcji: large-v3
+Model diarizacji: pyannote/speaker-diarization-3.1

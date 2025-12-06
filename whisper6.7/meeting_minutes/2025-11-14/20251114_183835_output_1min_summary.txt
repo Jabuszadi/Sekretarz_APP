@@ -1,0 +1,33 @@
+Raport ze Spotkania
+
+**Główne Tematy Omówione:**
+*   Analiza i porównywanie wyników (np. zadań) w perspektywie historycznej i obecnej.
+*   Wizualizacja danych na pulpicie (dashboardzie).
+*   Dyskusja nad uproszczoną lub podstawową wersją czegoś.
+*   Częstotliwość wysyłania informacji/raportów (raz w tygodniu).
+
+**Kluczowe Podjęte Decyzje:**
+(Brak informacji w podanym fragmencie transkrypcji.)
+
+**Lista Zadań do Wykonania:**
+(Brak informacji w podanym fragmencie transkrypcji.)
+
+**Ważne Działania Następcze lub Kolejne Kroki:**
+*   Stworzenie pulpitu (dashboardu), na którym widoczne są dane historyczne i obecne.
+*   Wysyłanie czegoś (np. raportu, informacji) raz w tygodniu, być może w uproszczonej lub podstawowej wersji.
+
+**Najważniejsze Uwagi lub Komentarze od Uczestników:**
+*   Zainteresowanie porównaniem wyników (np. z zadań z geometrii) z przeszłości (początkowych) z obecnymi.
+*   Potrzeba wglądu w historyczną perspektywę danych.
+*   Sugestia stworzenia pulpitu, na którym te informacje byłyby widoczne.
+*   Duże zainteresowanie uproszczoną lub podstawową wersją czegoś.
+*   Wspomniano o czymś, co byłoby wysyłane raz w tygodniu.
+
+
+---
+Wygenerowano: 2025-11-14 18:39:38
+Model LLM: gemini-2.5-flash
+Model Embeddings: infly/inf-retriever-v1-1.5b
+Metoda chunkowania: segmenty 240s z nałożeniem 0s
+Model transkrypcji: large-v3
+Model diarizacji: pyannote/speaker-diarization-3.1

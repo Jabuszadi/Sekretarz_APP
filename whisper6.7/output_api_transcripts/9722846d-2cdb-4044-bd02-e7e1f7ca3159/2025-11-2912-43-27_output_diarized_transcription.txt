@@ -1,0 +1,33 @@
+Andrzej: powiedzmy, no nie wiem, tam, niech będzie geometria, tak, jak sobie idzie, radę z geometrią.
+Andrzej: Klikam, patrzę i patrzę, czy na przykład na początku, jak robiłem te zadania, to miałem wyniki wyższe czy niższe, tak, i jak to wygląda, jak to wygląda obecnie.
+Andrzej: To jest jedna rzecz. Tak i tak z każdego, z każdego działu.
+Andrzej: Też, żeby można było, widzisz, no nie spisałem sobie dokładnie tego wszystkiego, a powinienem, jak to wyglądało też właśnie jednorazowo, jak to wygląda, jak to wygląda w perspektywie historycznej,
+Andrzej: czyli żeby on miał pulpit, na którym to jest widoczne.
+Andrzej: Natomiast to, co bardzo mnie interesuje i to, co mi zależy, żeby można było w takiej wersji uproszczonej czy podstawowej, od której byśmy ruszali, żeby raz w tygodniu
+Andrzej: był wysyłany albo link, albo w formie PDF-u, na maila taki raport progresu.
+Andrzej: Już Ci tłumaczę, czemu też takie rozwiązanie.
+Andrzej: Najczęściej uczniowie, czy w ogóle w tym przedziale wiekowym, wszelkiego rodzaju kursy fundują rodzice, tak?
+Andrzej: Dziecko się zapisuje i nie wiadomo, co jest.
+Andrzej: Natomiast ja bym chciał, żeby właśnie sponsor czy rodzic, czyli oprócz tego, kto się loguje.
+Andrzej: Jeszcze, żeby można było na przykład dodać jakiś adres, na który taki raport, albo w postaci linka, tak jak u nas, nie?
+Andrzej: Że będziesz mógł się kliknąć w link, kto się będzie mógł być, mając ten indywidualny link, to nawet nie musi być PDF, ale mając ten indywidualny link, przekieruje się na stronę, na którym będzie miał podgląd cały raport progresu w
+Andrzej: ramach tych testów, tak? Jak dziecko z tymi testami sobie radzi, jak, ile tych testów w danym tygodniu, na przykład w danym tygodniu czy w danym miesiącu, tak, bo to można tam jakoś tam pewnie, żeby można było
+Andrzej: zobaczyć, jak ten progres funkcjonuje i żeby można było też pokazać na przykład, jak było na początku, na przykład we wrześniu czy w październiku, a jak jest tam powiedzmy w lutym czy w marcu, tak, żeby była taka możliwość też
+Andrzej: historyczna i ciągłości.
+Andrzej: Czyli mniej więcej tak jest takie narzędzie chciałbym zrobić.
+Andrzej: Czyli tak jak my mamy w GoToIT. Mamy testy, mamy działy, tylko że po każdym dziale będzie test.
+Andrzej: Tylko ten test nie będzie upoważniał do przejścia dalej, tylko w tym sensie, że uczeń będzie się sprawdzał.
+Andrzej: I w tym znaczeniu, żeby ten wynik się spisywał, archiwizował, i żeby później w ramach, w oparciu o te wyniki, będzie można było tworzyć, tworzyć raport.
+SPEAKER_UNKNOWN: Okej.
+SPEAKER_00: Te pytania testowe, one będą, powiedzmy, w formie skanów, czy to będzie Wasz tekst czysty?
+Andrzej: Wiesz co, ja myślę, znaczy ja będę pewnie, część rzeczy, bo będę miał pewnie grafiki też, no też będą w formie obrazków, tak, na tej zasadzie.
+SPEAKER_UNKNOWN: No bo tak się przygotowuje po prostu, co tam trzeba zrobić.
+SPEAKER_00: Jeszcze raz? No mówię, że przygotowując tam, jakie narzędzia użyć, żeby to przetworzyć do bazy danych.
+Andrzej: Znaczy ja, no właśnie, bo myślę, że tak, że ja jeszcze nie sprawdzałem dokładnie, jakie to byłoby narzędzie dokładnie, ale wyobrażam sobie tak, że jak będzie 8 pytań, znaczy jak będzie wyglądała konstrukcja poszczególnego pytania, że będzie pytanie,
+Andrzej: tak, będzie pytanie w formie obrazka, które się wyświetli, bo to może być tekst, no nie wiem, z polskiego albo powiedzmy z matematyki będziemy mieli jakąś tam figurę narysowaną, do niego będzie pytanie, ono
+Andrzej: będzie miało tam jakiś numer to swoje pytanie i do niego pewnie byłoby sześć odpowiedzi, nie cztery, normalnie są klasycznie cztery, ale pewnie sześć odpowiedzi,
+Andrzej: które on będzie musiał takim batonem kliknąć, nie?
+Andrzej: Przy odpowiedziach pewnie będzie konieczna też grafika, taka minigrafika w formie odpowiedzi, tak?
+Andrzej: Bo jak myślę, że mogą być, tak na szybko teraz, no ale pewnie tak, że ja te odpowiedzi będę musiał dostarczyć.
+Andrzej: Chyba, że zrobię tak, że będzie...
+Andrzej: No właśnie nie wiem, jak to zrobię. że jeden pasek i na tym pasku będą napisane i on będzie musiał tą odpowiedź wprowadzić, ale to będzie więcej błędów.

@@ -1,0 +1,30 @@
+Raport ze Spotkania
+
+**Główne Tematy Omówione:**
+- Monitorowanie i porównywanie wyników/postępów w różnych działach (np. geometria) w perspektywie historycznej i bieżącej.
+- Potrzeba stworzenia pulpitu (dashboardu) do wizualizacji tych danych.
+- Wysyłanie cotygodniowych raportów lub linków.
+
+**Kluczowe Podjęte Decyzje:**
+(Brak informacji w podanym fragmencie transkrypcji.)
+
+**Lista Zadań do Wykonania:**
+(Brak informacji w podanym fragmencie transkrypcji.)
+
+**Ważne Działania Następcze lub Kolejne Kroki:**
+- Raz w tygodniu był wysyłany albo link, albo... (zdanie jest urwane)
+
+**Najważniejsze Uwagi lub Komentarze od Uczestników:**
+- Uczestnik wyraża potrzebę śledzenia postępów w poszczególnych działach (np. geometria), porównując wyniki początkowe z obecnymi.
+- Zależy mu na widoku historycznym wyników.
+- Chciałby, aby istniał pulpit, na którym te dane byłyby widoczne.
+- Bardzo istotne jest dla niego, aby raz w tygodniu był wysyłany link lub inna forma aktualizacji, nawet w uproszczonej/podstawowej wersji.
+
+
+---
+Wygenerowano: 2025-10-30 14:11:57
+Model LLM: gemini-2.5-flash
+Model Embeddings: infly/inf-retriever-v1-1.5b
+Metoda chunkowania: segmenty 240s z nałożeniem 0s
+Model transkrypcji: large-v3
+Model diarizacji: pyannote/speaker-diarization-3.1

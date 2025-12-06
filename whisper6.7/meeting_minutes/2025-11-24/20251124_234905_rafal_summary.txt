@@ -1,0 +1,33 @@
+Raport ze Spotkania
+
+**Główne Tematy Omówione:**
+- Zadanie domowe z modułu jedenastego.
+- Tworzenie promptu.
+- Generowanie opisów dla dziewiętnastu wartości w sześciu poziomach oraz ogólnych opisów wartości, bazując na istniejących materiałach pisanych i ze strony internetowej.
+
+**Kluczowe Podjęte Decyzje:**
+(Brak informacji w podanym fragmencie transkrypcji.)
+
+**Lista Zadań do Wykonania:**
+- **Zadanie:** Zrobienie promptu, który na podstawie materiałów (tego, co napisał rozmówca, oraz materiałów ze strony internetowej) stworzy odpowiednie opisy do dziewiętnastu wartości w sześciu poziomach, a także ogólne opisy do każdej z tych wartości.
+- **Osoba odpowiedzialna:** Mówiący.
+- **Termin:** Pod koniec modułu jedenastego (jako zadanie domowe).
+
+**Ważne Działania Następcze lub Kolejne Kroki:**
+*   Zrobienie promptu jako zadania domowego pod koniec modułu jedenastego.
+*   Prompt ma na podstawie istniejących materiałów (tekstu napisanego przez rozmówcę i materiałów ze strony internetowej) stworzyć odpowiednie opisy do dziewiętnastu wartości w sześciu poziomach, a także ogólne opisy do każdej z tych wartości.
+
+**Najważniejsze Uwagi lub Komentarze od Uczestników:**
+*   Uczestnik poinformował o swoim zadaniu domowym z modułu jedenastego, które polega na stworzeniu promptu.
+*   Prompt ma wygenerować opisy dla dziewiętnastu wartości w sześciu poziomach, bazując na istniejących materiałach pisanych i ze strony internetowej.
+*   Dodatkowo, prompt stworzy ogólne opisy do każdej z wartości, zgodnie z wcześniejszym życzeniem innej osoby.
+*   Uczestnik wspomniał, że ma wzorzec, co ułatwi wykonanie zadania.
+
+
+---
+Wygenerowano: 2025-11-24 23:49:46
+Model LLM: gemini-2.5-flash
+Model Embeddings: infly/inf-retriever-v1-1.5b
+Metoda chunkowania: segmenty 240s z nałożeniem 0s
+Model transkrypcji: large-v3
+Model diarizacji: pyannote/speaker-diarization-3.1

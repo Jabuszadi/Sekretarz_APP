@@ -1,0 +1,37 @@
+Raport ze Spotkania
+
+**Główne Tematy Omówione:**
+(Brak informacji w podanym fragmencie transkrypcji.)
+
+**Kluczowe Podjęte Decyzje:**
+(Brak informacji w podanym fragmencie transkrypcji.)
+
+**Lista Zadań do Wykonania:**
+- Zadanie: Przejrzeć [coś]
+  - Osoba odpowiedzialna: Mówiący ("Ja")
+  - Termin/Status: Nie zrobione jeszcze (brak terminu)
+- Zadanie: Zapinać kilka tematów swoich
+  - Osoba odpowiedzialna: Mówiący ("Ja")
+  - Termin/Status: Zrobione/W trakcie (brak terminu)
+- Zadanie: Przerobić logo
+  - Osoba odpowiedzialna: Mówiący ("Ja")
+  - Termin/Status: Zrobione
+- Zadanie: Wrzucić/podpiąć logo
+  - Osoba odpowiedzialna: Mówiący ("Ja")
+  - Termin/Status: Zrobione (wczoraj lub przedwczoraj)
+
+**Ważne Działania Następcze lub Kolejne Kroki:**
+Przejrzenie (czegoś, co zawiera "trochę rzeczy").
+
+**Najważniejsze Uwagi lub Komentarze od Uczestników:**
+- Jeden z uczestników nie miał czasu przejrzeć materiałów, ponieważ był zajęty świętami i innymi tematami.
+- Ten sam uczestnik poinformował, że udało mu się wgrać przerobione logo, które podpiął wczoraj lub przedwczoraj, i zapytał, czy zostało ono zauważone.
+
+
+---
+Wygenerowano: 2025-11-06 23:13:34
+Model LLM: gemini-2.5-flash
+Model Embeddings: infly/inf-retriever-v1-1.5b
+Metoda chunkowania: segmenty 240s z nałożeniem 0s
+Model transkrypcji: large-v3
+Model diarizacji: pyannote/speaker-diarization-3.1

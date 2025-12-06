@@ -1,0 +1,34 @@
+Raport ze Spotkania
+
+**Główne Tematy Omówione:**
+(Brak informacji w podanym fragmencie transkrypcji.)
+
+**Kluczowe Podjęte Decyzje:**
+(Brak informacji w podanym fragmencie transkrypcji.)
+
+**Lista Zadań do Wykonania:**
+- Przejrzeć [coś]
+    - Osoba odpowiedzialna: Mówiący
+    - Termin: Brak
+- Zapinać kilka swoich tematów
+    - Osoba odpowiedzialna: Mówiący
+    - Termin: Brak
+- Przerobić i wrzucić/podpiąć logo
+    - Osoba odpowiedzialna: Mówiący
+    - Termin: Brak
+
+**Ważne Działania Następcze lub Kolejne Kroki:**
+- Przejrzenie (review) "trochę rzeczy" (some things/items).
+
+**Najważniejsze Uwagi lub Komentarze od Uczestników:**
+- Uczestnik nie miał czasu przejrzeć materiałów, ponieważ był zajęty świętami i innymi tematami.
+- Uczestnik przerobił i wrzucił logo, pytając, czy zostało to zauważone.
+
+
+---
+Wygenerowano: 2025-11-11 11:21:09
+Model LLM: gemini-2.5-flash
+Model Embeddings: infly/inf-retriever-v1-1.5b
+Metoda chunkowania: segmenty 240s z nałożeniem 0s
+Model transkrypcji: large-v3
+Model diarizacji: pyannote/speaker-diarization-3.1

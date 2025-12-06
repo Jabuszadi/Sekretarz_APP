@@ -1,0 +1,33 @@
+Raport ze Spotkania
+
+**Główne Tematy Omówione:**
+- Zadanie domowe z modułu jedenastego.
+- Tworzenie promptu do generowania opisów.
+- Generowanie opisów dla dziewiętnastu wartości w sześciu poziomach.
+- Wykorzystanie istniejących materiałów pisemnych i ze strony internetowej jako podstawy do tworzenia opisów.
+
+**Kluczowe Podjęte Decyzje:**
+(Brak informacji w podanym fragmencie transkrypcji.)
+
+**Lista Zadań do Wykonania:**
+- Zadanie: Zrobienie promptu, który na podstawie dostarczonych materiałów stworzy odpowiednie opisy do dziewiętnastu wartości w sześciu poziomach oraz ogólne opisy do każdej z tych wartości.
+- Osoba odpowiedzialna: Mówiący.
+- Termin: Pod koniec modułu jedenastego (jako część zadania domowego).
+
+**Ważne Działania Następcze lub Kolejne Kroki:**
+- Zrobienie promptu, który na podstawie istniejących materiałów (tego, co napisał rozmówca i materiałów ze strony internetowej) stworzy odpowiednie opisy do dziewiętnastu wartości w sześciu poziomach, a także ogólne opisy do każdej z tych wartości.
+
+**Najważniejsze Uwagi lub Komentarze od Uczestników:**
+*   Uczestnik pracuje nad zadaniem domowym z modułu jedenastego, polegającym na stworzeniu promptu.
+*   Prompt ma generować opisy dla dziewiętnastu wartości w sześciu poziomach, a także ogólne opisy dla każdej z tych wartości, zgodnie z wcześniejszymi ustaleniami ("tak jak chciałeś").
+*   Do stworzenia promptu zostaną wykorzystane materiały napisane przez inną osobę oraz materiały ze strony internetowej.
+*   Uczestnik posiada wzorzec do wykonania tego zadania.
+
+
+---
+Wygenerowano: 2025-11-29 12:49:49
+Model LLM: gemini-2.5-flash
+Model Embeddings: infly/inf-retriever-v1-1.5b
+Metoda chunkowania: segmenty 240s z nałożeniem 0s
+Model transkrypcji: AssemblyAI – Best
+Model diarizacji: Modal remote diarization

@@ -1,0 +1,61 @@
+Raport ze Spotkania
+
+**Główne Tematy Omówione:**
+*   Rozwój narzędzia/systemu do śledzenia postępów uczniów, podobnego do GoToIT.
+*   Implementacja testów po każdym dziale w celu sprawdzania i archiwizowania wyników uczniów.
+*   Tworzenie raportów progresu (tygodniowych, historycznych) dla uczniów i rodziców/sponsorów, wysyłanych mailem w formie linku lub PDF-u.
+*   Dyskusja na temat struktury i formatu pytań testowych, w tym wykorzystania obrazków/grafik oraz sześciu odpowiedzi do wyboru.
+*   Koncepcja pulpitu dla ucznia, na którym widoczny byłby jego progres.
+
+**Kluczowe Podjęte Decyzje:**
+(Brak informacji w podanym fragmencie transkrypcji.)
+
+**Lista Zadań do Wykonania:**
+*   **Wysyłanie raportu progresu (link lub PDF na maila):**
+    *   Osoba odpowiedzialna: Nieokreślona (część systemu/narzędzia).
+    *   Termin: Raz w tygodniu.
+*   **Możliwość dodania adresu e-mail dla raportu (dla sponsora/rodzica):**
+    *   Osoba odpowiedzialna: Nieokreślona (część systemu/narzędzia).
+    *   Termin: Brak.
+*   **Tworzenie testów po każdym dziale:**
+    *   Osoba odpowiedzialna: Nieokreślona (część systemu/narzędzia).
+    *   Termin: Po każdym dziale.
+*   **Spisywanie i archiwizowanie wyników testów:**
+    *   Osoba odpowiedzialna: Nieokreślona (część systemu/narzędzia).
+    *   Termin: Brak (ciągłe).
+*   **Tworzenie raportów na podstawie wyników testów:**
+    *   Osoba odpowiedzialna: Nieokreślona (część systemu/narzędzia).
+    *   Termin: Brak (ciągłe).
+*   **Przygotowanie pytań testowych (w tym grafik):**
+    *   Osoba odpowiedzialna: Mówca ("ja").
+    *   Termin: Brak.
+*   **Wybór narzędzia do przetwarzania danych do bazy danych:**
+    *   Osoba odpowiedzialna: Mówca ("ja").
+    *   Termin: Brak.
+*   **Dostarczenie odpowiedzi (do pytań testowych, w tym grafiki):**
+    *   Osoba odpowiedzialna: Mówca ("ja").
+    *   Termin: Brak.
+
+**Ważne Działania Następcze lub Kolejne Kroki:**
+*   Wysyłanie cotygodniowego raportu progresu (link lub PDF) na maila.
+*   Umożliwienie dodania adresu e-mail sponsora/rodzica, na który taki raport będzie wysyłany w postaci linka przekierowującego na stronę z podglądem.
+*   Stworzenie narzędzia, w którym po każdym dziale będzie test, a wyniki tych testów będą spisywane i archiwizowane w celu tworzenia raportów.
+*   Określenie narzędzia do przetwarzania danych (pytań testowych) do bazy danych.
+*   Przygotowanie i dostarczenie pytań testowych (w formie obrazków, z grafikami) oraz sześciu odpowiedzi (potencjalnie z minigrafikami).
+
+**Najważniejsze Uwagi lub Komentarze od Uczestników:**
+*   Propozycja stworzenia pulpitu/dashboardu dla ucznia, na którym widoczny będzie historyczny progres w poszczególnych działach (np. geometria), z możliwością porównania wyników z przeszłością.
+*   Konieczność wysyłania cotygodniowego raportu progresu (link lub PDF) na maila rodzicom/sponsorom, aby mogli monitorować postępy dziecka, z podglądem ciągłości historycznej wyników (np. porównanie wyników z początku roku szkolnego z obecnymi).
+*   System ma zawierać testy po każdym dziale, służące do samodzielnego sprawdzania się ucznia, a ich wyniki mają być archiwizowane i służyć do generowania raportów.
+*   Pytanie o format pytań testowych: czy będą to skany, czy czysty tekst.
+*   Odpowiedź, że pytania będą zawierały grafiki (np. figury matematyczne), a struktura pytania to obrazek z pytaniem, numer pytania i sześć odpowiedzi do wyboru (klikane batonem), z możliwością, że odpowiedzi również będą zawierały minigrafiki.
+*   Zastanawianie się nad narzędziem do przetwarzania pytań do bazy danych i nad sposobem wprowadzania odpowiedzi, z obawą o błędy przy wprowadzaniu tekstu.
+
+
+---
+Wygenerowano: 2025-07-29 14:37:13
+Model LLM: gemini-2.5-flash
+Model Embeddings: infly/inf-retriever-v1-1.5b
+Metoda chunkowania: segmenty 240s z nałożeniem 0s
+Model transkrypcji: large-v3
+Model diarizacji: pyannote/speaker-diarization-3.1

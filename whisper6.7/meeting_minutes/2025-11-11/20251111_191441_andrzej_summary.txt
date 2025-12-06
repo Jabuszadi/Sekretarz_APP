@@ -1,0 +1,34 @@
+Raport ze Spotkania
+
+**Główne Tematy Omówione:**
+*   Teczni (główny temat)
+*   Kilka tematów związanych z "zapinalam"
+*   Logo (omawianie zmian/przeróbek)
+
+**Kluczowe Podjęte Decyzje:**
+(Brak informacji w podanym fragmencie transkrypcji.)
+
+**Lista Zadań do Wykonania:**
+- Przejrzeć [coś, "tego"] - Osoba odpowiedzialna: Ja (mówiący) - Termin: Brak informacji
+- Zająć się "o teczni" - Osoba odpowiedzialna: Ja (mówiący) - Termin: Brak informacji
+- Zająć się "kilka tematów z zapinalam" - Osoba odpowiedzialna: Ja (mówiący) - Termin: Brak informacji
+- Wrzucić logo (przerobione) - Osoba odpowiedzialna: Ja (mówiący) - Termin: Zrobione wczoraj
+
+**Ważne Działania Następcze lub Kolejne Kroki:**
+*   Przejrzenie "tego" (nieokreślonych rzeczy/dokumentów).
+*   Zajęcie się "o teczni" (prawdopodobnie sprawami związanymi z teczką/teczkami).
+*   Zajęcie się kilkoma tematami z "zapinalam".
+
+**Najważniejsze Uwagi lub Komentarze od Uczestników:**
+*   Uczestnik nie miał czasu na przejrzenie materiałów, które zawierają wiele rzeczy.
+*   Nie udało się zrealizować planu skupienia się głównie na "teczni" oraz kilku tematach z "zapinalam".
+*   Udało się wgrać zmodyfikowane logo, co zostało zrobione wczoraj.
+
+
+---
+Wygenerowano: 2025-11-11 19:15:35
+Model LLM: gemini-2.5-flash
+Model Embeddings: infly/inf-retriever-v1-1.5b
+Metoda chunkowania: segmenty 240s z nałożeniem 0s
+Model transkrypcji: large-v3
+Model diarizacji: pyannote/speaker-diarization-3.1

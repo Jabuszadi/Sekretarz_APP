@@ -1,0 +1,29 @@
+Raport ze Spotkania
+
+**Główne Tematy Omówione:**
+(Brak informacji w podanym fragmencie transkrypcji.)
+
+**Kluczowe Podjęte Decyzje:**
+(Brak informacji w podanym fragmencie transkrypcji.)
+
+**Lista Zadań do Wykonania:**
+- Przejrzenie (nieokreślonego materiału): Osoba odpowiedzialna: Mówiący. Termin: Brak.
+- Zapięcie/sfinalizowanie kilku własnych tematów: Osoba odpowiedzialna: Mówiący. Termin: Brak.
+- Przerobienie logo: Osoba odpowiedzialna: Mówiący. Termin: Brak.
+- Wrócenie/podpięcie logo: Osoba odpowiedzialna: Mówiący. Termin: Brak.
+
+**Ważne Działania Następcze lub Kolejne Kroki:**
+- Przejrzenie czegoś (coś, czego mówiący nie miał jeszcze czasu przejrzeć).
+
+**Najważniejsze Uwagi lub Komentarze od Uczestników:**
+- Uczestnik nie miał czasu przejrzeć materiałów, ponieważ był zajęty świętami i innymi tematami.
+- Uczestnik poinformował, że udało mu się przerobić i wgrać logo, pytając, czy zostało ono zauważone.
+
+
+---
+Wygenerowano: 2025-11-09 13:18:49
+Model LLM: gemini-2.5-flash
+Model Embeddings: infly/inf-retriever-v1-1.5b
+Metoda chunkowania: segmenty 240s z nałożeniem 0s
+Model transkrypcji: large-v3
+Model diarizacji: pyannote/speaker-diarization-3.1

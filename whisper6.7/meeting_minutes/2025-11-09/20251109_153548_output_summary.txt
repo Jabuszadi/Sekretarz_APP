@@ -1,0 +1,71 @@
+Raport ze Spotkania
+
+**Główne Tematy Omówione:**
+*   System śledzenia postępów uczniów w nauce, z podziałem na działy (np. geometria).
+*   Wizualizacja historycznych danych o postępach uczniów (porównanie wyników z różnych okresów).
+*   Tworzenie i wysyłanie cotygodniowych raportów progresu (w formie linka lub PDF-u na maila) dla rodziców/sponsorów.
+*   Umożliwienie dostępu sponsorom/rodzicom do szczegółowych raportów postępów dziecka poprzez indywidualny link.
+*   Struktura testów po każdym dziale, służących do sprawdzania się i archiwizowania wyników.
+*   Format pytań testowych: możliwość użycia grafik w pytaniach i odpowiedziach, sześć opcji odpowiedzi.
+*   Narzędzia do przetwarzania pytań (w tym grafik) do bazy danych.
+
+**Kluczowe Podjęte Decyzje:**
+*   Wysyłanie cotygodniowego raportu progresu (w formie linku lub PDF-u) na maila.
+*   Umożliwienie dodania adresu e-mail sponsora/rodzica, na który taki raport progresu będzie wysyłany.
+*   Narzędzie będzie zawierało testy po każdym dziale.
+*   Testy te będą służyły do samokontroli ucznia, a ich wyniki będą spisywane i archiwizowane.
+*   Na podstawie zarchiwizowanych wyników testów będą tworzone raporty progresu.
+
+**Lista Zadań do Wykonania:**
+*   **Zadanie:** Wysyłanie raportu progresu (linka lub w formie PDF-u) na maila.
+    *   Osoba odpowiedzialna: Brak informacji.
+    *   Termin: Raz w tygodniu.
+*   **Zadanie:** Umożliwienie dodania adresu e-mail (sponsora/rodzica), na który będzie wysyłany raport.
+    *   Osoba odpowiedzialna: Brak informacji.
+    *   Termin: Brak informacji.
+*   **Zadanie:** Stworzenie narzędzia (systemu) do monitorowania progresu uczniów.
+    *   Osoba odpowiedzialna: Mówca ("chciałbym zrobić").
+    *   Termin: Brak informacji.
+*   **Zadanie:** Przygotowanie testów po każdym dziale.
+    *   Osoba odpowiedzialna: Brak informacji.
+    *   Termin: Po każdym dziale.
+*   **Zadanie:** Spisywanie i archiwizowanie wyników testów.
+    *   Osoba odpowiedzialna: Brak informacji.
+    *   Termin: Brak informacji.
+*   **Zadanie:** Tworzenie raportów na podstawie wyników.
+    *   Osoba odpowiedzialna: Brak informacji.
+    *   Termin: Brak informacji.
+*   **Zadanie:** Przygotowanie grafik/obrazków do pytań testowych.
+    *   Osoba odpowiedzialna: Mówca ("ja będę pewnie... część rzeczy, bo będę miał pewnie grafiki też, no też będą w formie obrazków").
+    *   Termin: Brak informacji.
+*   **Zadanie:** Wybór narzędzia do przetwarzania danych do bazy danych.
+    *   Osoba odpowiedzialna: Mówca ("ja jeszcze nie sprawdzałem dokładnie, jakie to byłoby narzędzie dokładnie").
+    *   Termin: Brak informacji.
+*   **Zadanie:** Dostarczenie odpowiedzi do pytań testowych (w tym ewentualnie grafik do odpowiedzi).
+    *   Osoba odpowiedzialna: Mówca ("ja te odpowiedzi będę musiał dostarczyć").
+    *   Termin: Brak informacji.
+
+**Ważne Działania Następcze lub Kolejne Kroki:**
+*   Wysyłanie cotygodniowego raportu progresu (w formie linku lub PDF-u) na maila.
+*   Umożliwienie dodania adresu e-mail sponsora/rodzica, na który będzie wysyłany raport progresu.
+*   Stworzenie pulpitu, na którym widoczny będzie progres historyczny i bieżący.
+*   Spisywanie i archiwizowanie wyników testów.
+*   Tworzenie raportów w oparciu o zarchiwizowane wyniki.
+*   Określenie konstrukcji poszczególnego pytania testowego (np. pytanie w formie obrazka, sześć odpowiedzi, grafiki w odpowiedziach).
+*   Wybór narzędzia do przetworzenia danych do bazy danych.
+
+**Najważniejsze Uwagi lub Komentarze od Uczestników:**
+*   Potrzeba narzędzia do śledzenia postępów uczniów, które pokazywałoby wyniki z poszczególnych działów (np. geometria) oraz ich historyczną zmianę.
+*   Konieczność stworzenia pulpitu, na którym te dane będą widoczne.
+*   Wysyłanie raz w tygodniu raportu progresu (link lub PDF na maila) do rodziców/sponsorów, aby mogli śledzić postępy dziecka, liczbę wykonanych testów oraz porównanie wyników z różnych okresów (np. wrzesień vs. luty).
+*   Testy będą po każdym dziale, służące do samokontroli i archiwizacji wyników, które posłużą do tworzenia raportów.
+*   Pytania testowe będą w formie obrazków (np. figury matematyczne, tekst), z sześcioma odpowiedziami do wyboru (klikane batony), które również mogą zawierać minigrafiki.
+
+
+---
+Wygenerowano: 2025-11-09 15:36:49
+Model LLM: gemini-2.5-flash
+Model Embeddings: infly/inf-retriever-v1-1.5b
+Metoda chunkowania: segmenty 240s z nałożeniem 0s
+Model transkrypcji: large-v3
+Model diarizacji: pyannote/speaker-diarization-3.1

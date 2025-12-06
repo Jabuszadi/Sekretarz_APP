@@ -1,0 +1,50 @@
+Raport ze Spotkania
+
+**Główne Tematy Omówione:**
+*   Rozwój narzędzia do śledzenia postępów uczniów w nauce, z możliwością przeglądania wyników historycznych i bieżących.
+*   Funkcjonalność pulpitu (dashboardu) dla ucznia, prezentującego jego postępy w poszczególnych działach.
+*   Wysyłanie cotygodniowych raportów progresu (w formie linku lub PDF-u na maila) do rodziców/sponsorów.
+*   Szczegóły dotyczące formatu pytań testowych: możliwość użycia grafik/obrazków w pytaniach (np. z matematyki) i odpowiedziach, liczba opcji odpowiedzi (sześć zamiast czterech), sposób wprowadzania odpowiedzi przez ucznia (kliknięcie batonu).
+*   Archiwizacja wyników testów po każdym dziale w celu tworzenia raportów progresu.
+
+**Kluczowe Podjęte Decyzje:**
+*   Wprowadzenie testów po każdym dziale.
+*   Testy te będą służyć do samooceny ucznia, a nie do przejścia do kolejnego etapu.
+*   Wyniki testów będą spisywane i archiwizowane.
+*   Na podstawie zarchiwizowanych wyników będą tworzone raporty.
+*   Wysyłanie cotygodniowego raportu progresu (w formie linka lub PDF-u) na maila rodziców/sponsorów.
+
+**Lista Zadań do Wykonania:**
+*   **Wysyłanie raportu progresu (link lub PDF na maila)**: Osoba odpowiedzialna: Nieokreślona (system/narzędzie). Termin: Raz w tygodniu.
+*   **Dodanie możliwości dodawania adresu e-mail sponsora/rodzica do systemu (dla raportów)**: Osoba odpowiedzialna: Nieokreślona (system/narzędzie). Termin: Brak.
+*   **Stworzenie pulpitu dla ucznia z widocznym progressem**: Osoba odpowiedzialna: Nieokreślona (system/narzędzie). Termin: Brak.
+*   **Spisywanie i archiwizowanie wyników testów**: Osoba odpowiedzialna: Nieokreślona (system/narzędzie). Termin: Brak.
+*   **Tworzenie raportu na podstawie zarchiwizowanych wyników**: Osoba odpowiedzialna: Nieokreślona (system/narzędzie). Termin: Brak.
+*   **Przygotowanie części pytań testowych w formie grafik/obrazków**: Osoba odpowiedzialna: Mówca. Termin: Brak.
+*   **Wybór narzędzia do przetworzenia danych do bazy danych**: Osoba odpowiedzialna: Mówca. Termin: Brak.
+*   **Dostarczenie odpowiedzi do pytań testowych**: Osoba odpowiedzialna: Mówca. Termin: Brak.
+
+**Ważne Działania Następcze lub Kolejne Kroki:**
+*   Stworzenie pulpitu, na którym widoczny będzie progres.
+*   Wysyłanie raz w tygodniu raportu progresu (linka lub w formie PDF-u) na maila.
+*   Umożliwienie dodania adresu e-mail sponsora/rodzica, na który taki raport będzie wysyłany.
+*   Zapewnienie indywidualnego linka, który przekieruje sponsora/rodzica na stronę z podglądem całego raportu progresu w ramach testów.
+*   Spisywanie i archiwizowanie wyników testów.
+*   Tworzenie raportów w oparciu o zarchiwizowane wyniki.
+*   Określenie narzędzia do przetwarzania danych do bazy danych.
+
+**Najważniejsze Uwagi lub Komentarze od Uczestników:**
+*   Potrzeba systemu do śledzenia postępów uczniów w poszczególnych działach (np. geometria), z możliwością przeglądania historycznych wyników (początkowe vs. obecne) na pulpicie.
+*   Konieczność cotygodniowego wysyłania raportu progresu (w formie linku lub PDF-u na maila) do rodziców/sponsorów, aby mogli monitorować, jak dziecko radzi sobie z testami, ile testów wykonało w danym tygodniu/miesiącu oraz jak wygląda progres w perspektywie historycznej (np. wrzesień vs. luty).
+*   Testy po każdym dziale mają służyć do sprawdzania się ucznia, a ich wyniki mają być archiwizowane w celu tworzenia raportów.
+*   Pytania testowe będą zawierały grafiki (np. figury matematyczne), będą miały swój numer i prawdopodobnie sześć odpowiedzi do wyboru, które uczeń będzie klikał. Odpowiedzi również mogą zawierać minigrafiki.
+*   Rozważania dotyczące narzędzia do przetwarzania pytań do bazy danych oraz formatu pytań (skany vs. czysty tekst) i odpowiedzi (klikane batony vs. wprowadzanie tekstu, z obawą o błędy przy wprowadzaniu tekstu).
+
+
+---
+Wygenerowano: 2025-11-08 15:59:54
+Model LLM: gemini-2.5-flash
+Model Embeddings: infly/inf-retriever-v1-1.5b
+Metoda chunkowania: segmenty 240s z nałożeniem 0s
+Model transkrypcji: large-v3
+Model diarizacji: pyannote/speaker-diarization-3.1

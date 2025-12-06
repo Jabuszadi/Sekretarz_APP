@@ -1,0 +1,32 @@
+Raport ze Spotkania
+
+**Główne Tematy Omówione:**
+(Brak informacji w podanym fragmencie transkrypcji.)
+
+**Kluczowe Podjęte Decyzje:**
+(Brak informacji w podanym fragmencie transkrypcji.)
+
+**Lista Zadań do Wykonania:**
+- Zadanie: Zrobienie promptu, który na podstawie dostarczonych materiałów (tego co "ty" napisałeś i materiałów ze strony internetowej) stworzy odpowiednie opisy do wszystkich 19 wartości w sześciu poziomach oraz ogólne opisy do każdej z wartości.
+  - Osoba odpowiedzialna: Mówiący (osoba wypowiadająca się).
+  - Termin: Pod koniec modułu 11.
+
+**Ważne Działania Następcze lub Kolejne Kroki:**
+* Zrobienie promptu, który na podstawie napisanych materiałów i materiałów ze strony internetowej stworzy odpowiednie opisy do 19 wartości w sześciu poziomach.
+* Stworzenie ogólnych opisów do każdej z tych wartości.
+
+**Najważniejsze Uwagi lub Komentarze od Uczestników:**
+*   Uczestnik ma zadanie domowe na koniec modułu 11.
+*   Zadanie polega na stworzeniu promptu.
+*   Prompt ma generować opisy dla 19 wartości w sześciu poziomach, bazując na dostarczonych materiałach i treściach ze strony internetowej.
+*   Prompt ma również tworzyć ogólne opisy dla każdej wartości, zgodnie z oczekiwaniami uczestnika.
+*   Uczestnik posiada wzorzec do wykonania tego zadania.
+
+
+---
+Wygenerowano: 2025-11-24 14:02:39
+Model LLM: gemini-2.5-flash
+Model Embeddings: infly/inf-retriever-v1-1.5b
+Metoda chunkowania: segmenty 240s z nałożeniem 0s
+Model transkrypcji: large-v3
+Model diarizacji: pyannote/speaker-diarization-3.1

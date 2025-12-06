@@ -1,0 +1,8 @@
+SPEAKER_00: się znalazłem, ale nie umiałem
+SPEAKER_00: łączę przyjemne z pożytecznym. Mianowicie jest zadanie domowe pod koniec modułu 11.
+SPEAKER_00: i moim zadaniem będzie zrobienie takiego promptu, który na podstawie tego co ty napisałeś,
+SPEAKER_00: i tych materiałów ze strony internetowej, on stworzy odpowiednie opisy do wszystkich tych
+SPEAKER_00: 19 wartości w sześciu właśnie tych poziomach.
+SPEAKER_00: close
+SPEAKER_00: plus będą takie ogólne opisy do do każdej z tych wartości, tak jak chciałem.
+SPEAKER_00: No więc ponieważ mam wzorzec dla niego, no to jest kwestią tylko zrobienia tego.
