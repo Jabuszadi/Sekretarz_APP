@@ -7,7 +7,7 @@ import hashlib
 import json
 import logging
 from collections import defaultdict
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 
@@ -125,6 +125,30 @@ def init_db() -> None:
         """,
         """
         ALTER TABLE processed_files ADD COLUMN IF NOT EXISTS owner_username TEXT;
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS message_queue (
+            id SERIAL PRIMARY KEY,
+            message_id TEXT UNIQUE NOT NULL,
+            username TEXT NOT NULL,
+            query TEXT NOT NULL,
+            collection_name TEXT,
+            status TEXT NOT NULL DEFAULT 'pending',
+            priority INTEGER DEFAULT 0,
+            retry_count INTEGER DEFAULT 0,
+            max_retries INTEGER DEFAULT 3,
+            error_message TEXT,
+            response TEXT,
+            created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+            processed_at TIMESTAMPTZ,
+            next_retry_at TIMESTAMPTZ
+        );
+        """,
+        """
+        CREATE INDEX IF NOT EXISTS idx_message_queue_status ON message_queue(status);
+        """,
+        """
+        CREATE INDEX IF NOT EXISTS idx_message_queue_next_retry ON message_queue(next_retry_at) WHERE status = 'pending';
         """,
     ]
 
@@ -1280,4 +1304,148 @@ def update_batch_job_file_ids_json(batch_job_id: str, file_ids_json: str) -> boo
 
     set_batch_job_files(batch_record["id"], numeric_file_ids)
     return True
+
+
+# ==================================================
+#         Message Queue Functions
+# ==================================================
+
+def add_message_to_queue(
+    message_id: str,
+    username: str,
+    query: str,
+    collection_name: Optional[str] = None,
+    priority: int = 0,
+    max_retries: int = 3,
+) -> int:
+    """
+    Dodaje wiadomość do kolejki do przetworzenia.
+    
+    Zwraca:
+        int: ID wiadomości w bazie danych
+    """
+    row = pg_db.execute(
+        """
+        INSERT INTO message_queue (message_id, username, query, collection_name, status, priority, max_retries)
+        VALUES (%s, %s, %s, %s, 'pending', %s, %s)
+        ON CONFLICT (message_id) DO UPDATE
+        SET query = EXCLUDED.query,
+            collection_name = EXCLUDED.collection_name,
+            status = 'pending',
+            retry_count = 0,
+            error_message = NULL,
+            next_retry_at = NULL
+        RETURNING id
+        """,
+        (message_id, username, query, collection_name, priority, max_retries),
+        fetch="one",
+    )
+    return int(row["id"])
+
+
+def get_pending_messages(limit: int = 10) -> List[RowDict]:
+    """
+    Pobiera wiadomości oczekujące na przetworzenie.
+    
+    Zwraca wiadomości posortowane według priorytetu (wyższy = pierwszy) i czasu utworzenia.
+    """
+    rows = pg_db.execute(
+        """
+        SELECT *
+        FROM message_queue
+        WHERE status = 'pending'
+          AND (next_retry_at IS NULL OR next_retry_at <= CURRENT_TIMESTAMP)
+        ORDER BY priority DESC, created_at ASC
+        LIMIT %s
+        """,
+        (limit,),
+        fetch="all",
+    ) or []
+    return [dict(row) for row in rows]
+
+
+def update_message_status(
+    message_id: str,
+    status: str,
+    error_message: Optional[str] = None,
+    response: Optional[str] = None,
+) -> bool:
+    """
+    Aktualizuje status wiadomości w kolejce.
+    
+    Statusy: 'pending', 'processing', 'completed', 'failed', 'retrying'
+    """
+    processed_at = "CURRENT_TIMESTAMP" if status in ("completed", "failed") else None
+    processed_at_sql = f", processed_at = {processed_at}" if processed_at else ""
+    
+    pg_db.execute(
+        f"""
+        UPDATE message_queue
+        SET status = %s,
+            error_message = %s,
+            response = %s
+            {processed_at_sql}
+        WHERE message_id = %s
+        """,
+        (status, error_message, response, message_id),
+    )
+    return True
+
+
+def increment_retry_count(message_id: str, next_retry_delay_seconds: int = 60) -> bool:
+    """
+    Zwiększa licznik prób i ustawia czas następnej próby.
+    """
+    from datetime import timedelta
+    next_retry = datetime.now(timezone.utc) + timedelta(seconds=next_retry_delay_seconds)
+    
+    row = pg_db.execute(
+        """
+        UPDATE message_queue
+        SET retry_count = retry_count + 1,
+            next_retry_at = %s,
+            status = CASE
+                WHEN retry_count + 1 >= max_retries THEN 'failed'
+                ELSE 'pending'
+            END
+        WHERE message_id = %s
+        RETURNING retry_count, max_retries
+        """,
+        (next_retry, message_id),
+        fetch="one",
+    )
+    return row is not None
+
+
+def get_message_by_id(message_id: str) -> Optional[RowDict]:
+    """
+    Pobiera wiadomość po ID.
+    """
+    return _record_to_dict(
+        pg_db.execute(
+            "SELECT * FROM message_queue WHERE message_id = %s",
+            (message_id,),
+            fetch="one",
+        )
+    )
+
+
+def delete_old_completed_messages(days: int = 7) -> int:
+    """
+    Usuwa stare zakończone wiadomości (completed lub failed) starsze niż określona liczba dni.
+    
+    Zwraca:
+        int: Liczba usuniętych wiadomości
+    """
+    rows = pg_db.execute(
+        """
+        DELETE FROM message_queue
+        WHERE status IN ('completed', 'failed')
+          AND processed_at < CURRENT_TIMESTAMP - INTERVAL '%s days'
+        RETURNING id
+        """,
+        (days,),
+        fetch="all",
+    ) or []
+    return len(rows)
 

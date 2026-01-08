@@ -182,6 +182,75 @@
             chatHistory.scrollTop = chatHistory.scrollHeight;
         }
 
+        async function pollMessageStatus(jobId, maxAttempts = 60, interval = 2000) {
+            // Dodaj placeholder dla odpowiedzi AI
+            const placeholderElement = document.createElement('div');
+            placeholderElement.classList.add('agent-message');
+            placeholderElement.id = `placeholder-${jobId}`;
+            placeholderElement.textContent = 'Przetwarzanie...';
+            chatHistory.appendChild(placeholderElement);
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+
+            let attempts = 0;
+            const pollInterval = setInterval(async () => {
+                attempts++;
+                try {
+                    const statusResponse = await fetch(`/chat/query/status/${jobId}`);
+                    if (!statusResponse.ok) {
+                        throw new Error(`HTTP error! status: ${statusResponse.status}`);
+                    }
+                    const statusData = await statusResponse.json();
+                    const status = statusData.status;
+
+                    const placeholder = document.getElementById(`placeholder-${jobId}`);
+
+                    if (status === 'completed') {
+                        clearInterval(pollInterval);
+                        // Pobierz odpowiedź
+                        const responseResponse = await fetch(`/chat/query/response/${jobId}`);
+                        if (!responseResponse.ok) {
+                            throw new Error(`HTTP error! status: ${responseResponse.status}`);
+                        }
+                        const responseData = await responseResponse.json();
+                        
+                        // Zaktualizuj placeholder z odpowiedzią
+                        placeholder.innerHTML = marked.parse(responseData.response);
+                        updateStatus('Odpowiedź agenta otrzymana.', 'success');
+                        sendChatButton.disabled = false;
+                    } else if (status === 'failed') {
+                        clearInterval(pollInterval);
+                        const errorMsg = statusData.error_message || 'Nieznany błąd';
+                        placeholder.textContent = `Błąd: ${errorMsg}`;
+                        updateStatus(`Błąd: ${errorMsg}`, 'error');
+                        sendChatButton.disabled = false;
+                    } else if (status === 'pending' || status === 'processing' || status === 'retrying') {
+                        // Zaktualizuj status w placeholderze
+                        const statusText = status === 'retrying' 
+                            ? `Ponawianie próby (${statusData.retry_count + 1}/${statusData.max_retries})...`
+                            : 'Przetwarzanie...';
+                        placeholder.textContent = statusText;
+                    }
+
+                    // Sprawdź czy przekroczono maksymalną liczbę prób
+                    if (attempts >= maxAttempts) {
+                        clearInterval(pollInterval);
+                        placeholder.textContent = 'Timeout: Przetwarzanie trwa zbyt długo. Spróbuj ponownie później.';
+                        updateStatus('Timeout podczas oczekiwania na odpowiedź', 'error');
+                        sendChatButton.disabled = false;
+                    }
+                } catch (error) {
+                    console.error("Błąd podczas sprawdzania statusu wiadomości:", error);
+                    clearInterval(pollInterval);
+                    const placeholder = document.getElementById(`placeholder-${jobId}`);
+                    if (placeholder) {
+                        placeholder.textContent = `Błąd: ${error.message}`;
+                    }
+                    updateStatus(`Błąd: ${error.message}`, 'error');
+                    sendChatButton.disabled = false;
+                }
+            }, interval);
+        }
+
         chatForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const userQuery = chatInput.value.trim();
@@ -202,17 +271,29 @@
                 });
                 if (response.ok) {
                     const result = await response.json();
-                    addMessageToChatHistory(result.response, 'agent');
-                    updateStatus('Odpowiedź agenta otrzymana.', 'success');
+                    
+                    // Wyciągnij job_id z odpowiedzi
+                    const jobIdMatch = result.response.match(/ID zadania: ([a-f0-9-]+)/i) || 
+                                     result.response.match(/ID wiadomości: ([a-f0-9-]+)/i);
+                    if (jobIdMatch) {
+                        const jobId = jobIdMatch[1];
+                        // Rozpocznij polling statusu
+                        await pollMessageStatus(jobId);
+                    } else {
+                        // Fallback: jeśli nie znaleziono job_id, wyświetl odpowiedź bezpośrednio
+                        addMessageToChatHistory(result.response, 'agent');
+                        updateStatus('Odpowiedź agenta otrzymana.', 'success');
+                        sendChatButton.disabled = false;
+                    }
                 } else {
                     const errorData = await response.json();
                     addMessageToChatHistory(`Błąd: ${errorData.detail || 'Nieznany błąd'}`, 'agent');
                     updateStatus(`Błąd podczas komunikacji z agentem: ${errorData.detail || response.statusText}`, 'error');
+                    sendChatButton.disabled = false;
                 }
             } catch (error) {
                 addMessageToChatHistory(`Błąd sieci: ${error.message}`, 'agent');
                 updateStatus(`Wystąpił błąd sieci: ${error.message}`, 'error');
-            } finally {
                 sendChatButton.disabled = false;
             }
         });

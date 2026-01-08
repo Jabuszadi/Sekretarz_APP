@@ -67,6 +67,7 @@ if __name__ == "__main__":
 
     api_process = None # Inicjalizacja
     daemon_process = None # Inicjalizacja
+    dramatiq_worker_process = None # Inicjalizacja workera Dramatiq
 
     try:
         logging.info("Uruchamiam API... (api_app.py)")
@@ -84,7 +85,30 @@ if __name__ == "__main__":
         # Możesz tutaj dodać bardziej złożoną logikę sprawdzania daemona, jeśli potrzebujesz
         logging.info("Daemon został uruchomiony.")
 
-        logging.info("API i Daemon działają. Naciśnij CTRL+C, aby zakończyć.")
+        # Dramatiq worker - NIE uruchamiamy automatycznie
+        # Worker powinien być uruchomiony OSOBNO w osobnym terminalu dla lepszej widoczności logów
+        logging.info("=" * 80)
+        logging.info("📋 DRAMATIQ WORKER - Uruchom osobno!")
+        logging.info("=" * 80)
+        logging.info("⚠️  Worker NIE jest uruchamiany automatycznie przez run.py")
+        logging.info("")
+        logging.info("💡 Aby uruchomić worker, otwórz NOWY terminal i wykonaj:")
+        logging.info("")
+        logging.info("   Opcja 1 (prosty skrypt):")
+        logging.info("     python run_worker.py")
+        logging.info("")
+        logging.info("   Opcja 2 (bezpośrednio):")
+        logging.info("     python -m dramatiq queue_service --queues chat,batch_processing,file_processing")
+        logging.info("")
+        logging.info("✅ Worker będzie nasłuchiwał na kolejkach:")
+        logging.info("   - chat")
+        logging.info("   - batch_processing")
+        logging.info("   - file_processing")
+        logging.info("")
+        logging.info("📊 Logi z przetwarzania zadań będą widoczne w terminalu workera")
+        logging.info("=" * 80)
+
+        logging.info("API, Daemon i Dramatiq worker działają. Naciśnij CTRL+C, aby zakończyć.")
 
         while True:
             time.sleep(1)
@@ -101,4 +125,7 @@ if __name__ == "__main__":
         if daemon_process and daemon_process.poll() is None:
             daemon_process.terminate()
             daemon_process.wait(timeout=5) # Czekaj do 5 sekund na zakończenie
+        if dramatiq_worker_process and dramatiq_worker_process.poll() is None:
+            dramatiq_worker_process.terminate()
+            dramatiq_worker_process.wait(timeout=5) # Czekaj do 5 sekund na zakończenie
         logging.info("Wszystkie procesy zakończone.")

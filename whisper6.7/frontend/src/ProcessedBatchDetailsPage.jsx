@@ -183,12 +183,28 @@ function ProcessedBatchDetailsPage() {
                     </div>
                 </section>
 
-                <div>
+                <div className="mt-6 flex justify-center">
                     <Link
                         to="/upload"
-                        className="inline-flex items-center rounded-md bg-gray-900 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-gray-800"
+                        className="inline-flex items-center gap-2 rounded-lg bg-gray-900 px-6 py-3 text-base font-semibold text-white shadow-md transition-all hover:bg-gray-800 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
+                        style={{ color: '#ffffff' }}
                     >
-                        Prześlij nową partię
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-5 w-5 text-white"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            strokeWidth={2}
+                            style={{ color: '#ffffff', stroke: '#ffffff' }}
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                            />
+                        </svg>
+                        <span style={{ color: '#ffffff' }}>Prześlij nową partię</span>
                     </Link>
                 </div>
             </>

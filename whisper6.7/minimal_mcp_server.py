@@ -32,6 +32,7 @@ from models import TranscriptionSegment
 
 import agent_db
 import asyncio
+from queue_service import start_boss, stop_boss, enqueue_message, get_job_status, register_message_handler
 
 # Definicja run_in_threadpool jako alias dla asyncio.to_thread
 run_in_threadpool = asyncio.to_thread
@@ -45,6 +46,7 @@ from fastapi import FastAPI, Request, Form, UploadFile, File, HTTPException, Bac
 from fastapi.responses import HTMLResponse, JSONResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field, create_model
 
 import httpx
@@ -61,6 +63,7 @@ from workflows.errors import WorkflowRuntimeError
 from fastmcp.client import Client, StreamableHttpTransport
 # --- ZMIENNE GLOBALNE ---
 mcp_router_client = FastMCP()
+router_llamaindex_agent = None
 
 # --- Modele Pydantic ---
 class ChatQuery(BaseModel):
@@ -213,6 +216,11 @@ async def lifespan(app: FastAPI):
     global router_llamaindex_agent
     logging.info("Starting up Minimal FastMCP Server (API & Router)...")
     try:
+        # Inicjalizacja bazy danych (tworzy tabele w tym message_queue)
+        logging.info("Initializing database...")
+        agent_db.init_db()
+        logging.info("✅ Database initialized.")
+        
         await initialize_qdrant_resources()
         logging.info("✅ Qdrant resources initialized.")
         load_enrolled_speakers()
@@ -383,15 +391,56 @@ async def lifespan(app: FastAPI):
 
         logging.info("✅ Router LlamaIndex ReActAgent initialized with all tools.")
 
+        # Inicjalizacja systemu kolejkowania wiadomości (PostgreSQL)
+        async def process_message_callback(query: str, collection_name: Optional[str], username: str) -> str:
+            """Callback do przetwarzania wiadomości z kolejki."""
+            global router_llamaindex_agent
+            if router_llamaindex_agent is None:
+                raise Exception("Agent Router not initialized")
+            
+            # Ustaw kontekst użytkownika
+            context_token = current_username.set(username)
+            try:
+                # Wzmocnij zapytanie użytkownika o nazwę kolekcji, jeśli została podana
+                full_query = query
+                if collection_name:
+                    full_query = f"Użyj kolekcji Qdrant: {collection_name}. " + full_query
+                
+                agent_response = await router_llamaindex_agent.run(user_msg=full_query)
+                return agent_response.response.content
+            finally:
+                if context_token is not None:
+                    current_username.reset(context_token)
+        
+        # Uruchom system kolejkowania
+        await start_boss()
+        
+        # Zarejestruj handler do przetwarzania wiadomości
+        register_message_handler(process_message_callback)
+        
+        logging.info("✅ System kolejkowania wiadomości zainicjalizowany i worker uruchomiony.")
+
         logging.info("🎉 Minimal FastMCP Server startup complete!")
         yield
     finally:
         logging.info("Shutting down Minimal FastMCP Server...\n")
+        # Zatrzymaj system kolejkowania
+        await stop_boss()
         # === USUNIĘTO: Nie ma już globalnego db_agent_client do zamykania ===
         # cleanup_temp_dir()
         logging.info("Minimal FastMCP Server shutdown complete.\n")
 
 app = FastAPI(lifespan=lifespan)
+
+# Dodaj CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],  # Zezwól na połączenia z frontendu
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 templates = Jinja2Templates(directory=".")
 
 app.mount("/mcp_api", mcp_router_client)
@@ -784,11 +833,8 @@ async def serve_chat_interface(request: Request):
 
 @app.post("/chat/query", response_model=ChatResponse)
 async def chat_query_endpoint(chat_query: ChatQuery, request: Request):
-    global router_llamaindex_agent
     logging.info(f"Received chat query: '{chat_query.query}' at /chat/query endpoint.")
-    if router_llamaindex_agent is None:
-        raise HTTPException(status_code=503, detail="Agent Router not initialized. Please try again later.")
-    context_token = None
+    
     try:
         username = _resolve_username(request, chat_query.username)
         logging.info(
@@ -796,29 +842,102 @@ async def chat_query_endpoint(chat_query: ChatQuery, request: Request):
             username,
             chat_query.collection_name or "<none>",
         )
-        context_token = current_username.set(username)
-        # Wzmocnij zapytanie użytkownika o nazwę kolekcji, jeśli została podana
-        full_query = chat_query.query
-        if chat_query.collection_name:
-            full_query = f"Użyj kolekcji Qdrant: {chat_query.collection_name}. " + full_query
-
-        agent_response = await router_llamaindex_agent.run(user_msg=full_query)
-        logging.info(f"DEBUG: agent_response.response dir: {dir(agent_response.response)}")
-        logging.info(f"DEBUG: Output from LlamaIndex agent: {agent_response.response.content}")
-        return ChatResponse(response=agent_response.response.content)
-    except WorkflowRuntimeError as e:
-        logging.error(f"Error in chat_query_endpoint: {e}", exc_info=True)
-        # Wychwyć bardziej szczegółowe informacje o błędzie, jeśli są dostępne z WorkflowRuntimeError
-        error_message = f"Przepraszam, wystąpił błąd podczas przetwarzania Twojego zapytania: {e}"
-        if isinstance(e, WorkflowRuntimeError) and "list index out of range" in str(e):
-            error_message = "Przepraszam, agent AI napotkał problem podczas generowania odpowiedzi (brak treści). Może to być spowodowane filtrami bezpieczeństwa, problemami z modelem lub niejasnym zapytaniem. Spróbuj zadać pytanie ponownie lub przeformułować je."
-        elif isinstance(e, WorkflowRuntimeError):
-            error_message = f"Przepraszam, agent AI napotkał wewnętrzny błąd: {e}"
         
-        return ChatResponse(response=error_message)
-    finally:
-        if context_token is not None:
-            current_username.reset(context_token)
+        # Dodaj wiadomość do kolejki pgBoss
+        job_id = await enqueue_message(
+            username=username,
+            query=chat_query.query,
+            collection_name=chat_query.collection_name,
+            priority=0,
+        )
+        
+        logging.info(f"Wiadomość dodana do kolejki pgBoss: {job_id}")
+        
+        # Zwróć odpowiedź informującą, że wiadomość została dodana do kolejki
+        return ChatResponse(
+            response=f"Twoja wiadomość została przyjęta i jest przetwarzana. ID zadania: {job_id}. "
+                    f"Możesz sprawdzić status używając endpointu /chat/query/status/{job_id}"
+        )
+        
+    except Exception as e:
+        logging.error(f"Error in chat_query_endpoint: {e}", exc_info=True)
+        raise HTTPException(
+            status_code=500,
+            detail=f"Wystąpił błąd podczas dodawania wiadomości do kolejki: {e}"
+        )
+
+
+@app.get("/chat/query/status/{job_id}")
+async def get_message_status(job_id: str, request: Request):
+    """
+    Sprawdza status wiadomości w kolejce pgBoss.
+    
+    Zwraca:
+        - status: 'pending', 'processing', 'completed', 'failed', 'retrying'
+        - response: Odpowiedź (jeśli status = 'completed')
+        - error_message: Komunikat błędu (jeśli status = 'failed')
+    """
+    try:
+        username = _resolve_username(request, None)
+        job_status = await get_job_status(job_id)
+        
+        if not job_status:
+            raise HTTPException(status_code=404, detail="Job not found")
+        
+        return {
+            "job_id": job_id,
+            "status": job_status.get("status"),
+            "response": job_status.get("response"),
+            "error_message": job_status.get("error_message"),
+            "retry_count": job_status.get("retry_count", 0),
+            "max_retries": job_status.get("max_retries", 3),
+            "created_at": job_status.get("created_at"),
+            "processed_at": job_status.get("processed_at"),
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        logging.error(f"Error getting job status: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=f"Error getting job status: {e}")
+
+
+@app.get("/chat/query/response/{job_id}")
+async def get_message_response(job_id: str, request: Request):
+    """
+    Pobiera odpowiedź na wiadomość (jeśli jest gotowa).
+    
+    Zwraca ChatResponse jeśli zadanie jest zakończone, w przeciwnym razie błąd.
+    """
+    try:
+        username = _resolve_username(request, None)
+        job_status = await get_job_status(job_id)
+        
+        if not job_status:
+            raise HTTPException(status_code=404, detail="Job not found")
+        
+        status = job_status.get("status")
+        
+        if status == "completed":
+            return ChatResponse(response=job_status.get("response", ""))
+        elif status == "failed":
+            error_msg = job_status.get("error_message", "Unknown error")
+            return ChatResponse(
+                response=f"Przepraszam, wystąpił błąd podczas przetwarzania Twojego zapytania: {error_msg}"
+            )
+        elif status in ("pending", "processing", "retrying"):
+            return ChatResponse(
+                response=f"Wiadomość jest nadal przetwarzana. Status: {status}. "
+                        f"Próba {job_status.get('retry_count', 0) + 1}/{job_status.get('max_retries', 3)}"
+            )
+        else:
+            return ChatResponse(response=f"Nieznany status zadania: {status}")
+            
+    except HTTPException:
+        raise
+    except Exception as e:
+        logging.error(f"Error getting job response: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=f"Error getting job response: {e}")
+
 
 @app.post("/upload-audio")
 async def upload_audio(

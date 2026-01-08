@@ -23,13 +23,136 @@ function ChatPage() {
         scrollToBottom();
     }, [messages, scrollToBottom]);
 
+    const pollMessageStatus = async (messageId, maxAttempts = 60, interval = 2000) => {
+        // Dodaj placeholder dla odpowiedzi AI
+        setMessages((prevMessages) => [
+            ...prevMessages,
+            { text: 'Przetwarzanie...', sender: 'ai', timestamp: new Date().toLocaleTimeString(), isProcessing: true, messageId },
+        ]);
+
+        let attempts = 0;
+        const pollInterval = setInterval(async () => {
+            attempts++;
+            try {
+                const statusResponse = await authorizedFetch(`/chat/query/status/${messageId}`);
+                if (!statusResponse.ok) {
+                    throw new Error(`HTTP error! status: ${statusResponse.status}`);
+                }
+                const statusData = await statusResponse.json();
+                const status = statusData.status;
+
+                if (status === 'completed') {
+                    clearInterval(pollInterval);
+                    // Pobierz odpowiedź
+                    const responseResponse = await authorizedFetch(`/chat/query/response/${messageId}`);
+                    if (!responseResponse.ok) {
+                        throw new Error(`HTTP error! status: ${responseResponse.status}`);
+                    }
+                    const responseData = await responseResponse.json();
+                    
+                    // Zaktualizuj wiadomość z odpowiedzią (znajdź po messageId)
+                    setMessages((prevMessages) => {
+                        return prevMessages.map(msg => 
+                            msg.messageId === messageId
+                                ? {
+                                    text: marked.parse(responseData.response),
+                                    sender: 'ai',
+                                    timestamp: new Date().toLocaleTimeString(),
+                                    isProcessing: false,
+                                }
+                                : msg
+                        );
+                    });
+                    setLoading(false);
+                    setSendButtonDisabled(false);
+                } else if (status === 'failed') {
+                    clearInterval(pollInterval);
+                    const errorMsg = statusData.error_message || 'Nieznany błąd';
+                    setMessages((prevMessages) => {
+                        return prevMessages.map(msg =>
+                            msg.messageId === messageId
+                                ? {
+                                    text: `Błąd: ${errorMsg}`,
+                                    sender: 'ai',
+                                    timestamp: new Date().toLocaleTimeString(),
+                                    isError: true,
+                                    isProcessing: false,
+                                }
+                                : msg
+                        );
+                    });
+                    setError(errorMsg);
+                    setLoading(false);
+                    setSendButtonDisabled(false);
+                } else if (status === 'pending' || status === 'processing' || status === 'retrying') {
+                    // Zaktualizuj status w placeholderze
+                    const statusText = status === 'retrying' 
+                        ? `Ponawianie próby (${statusData.retry_count + 1}/${statusData.max_retries})...`
+                        : 'Przetwarzanie...';
+                    setMessages((prevMessages) => {
+                        return prevMessages.map(msg =>
+                            msg.messageId === messageId
+                                ? {
+                                    ...msg,
+                                    text: statusText,
+                                }
+                                : msg
+                        );
+                    });
+                }
+
+                // Sprawdź czy przekroczono maksymalną liczbę prób
+                if (attempts >= maxAttempts) {
+                    clearInterval(pollInterval);
+                    setMessages((prevMessages) => {
+                        return prevMessages.map(msg =>
+                            msg.messageId === messageId
+                                ? {
+                                    text: 'Timeout: Przetwarzanie trwa zbyt długo. Spróbuj ponownie później.',
+                                    sender: 'ai',
+                                    timestamp: new Date().toLocaleTimeString(),
+                                    isError: true,
+                                    isProcessing: false,
+                                }
+                                : msg
+                        );
+                    });
+                    setError('Timeout podczas oczekiwania na odpowiedź');
+                    setLoading(false);
+                    setSendButtonDisabled(false);
+                }
+            } catch (error) {
+                console.error("Błąd podczas sprawdzania statusu wiadomości:", error);
+                clearInterval(pollInterval);
+                setMessages((prevMessages) => {
+                    return prevMessages.map(msg =>
+                        msg.messageId === messageId
+                            ? {
+                                text: `Błąd: ${error.message}`,
+                                sender: 'ai',
+                                timestamp: new Date().toLocaleTimeString(),
+                                isError: true,
+                                isProcessing: false,
+                            }
+                            : msg
+                    );
+                });
+                setError(error.message);
+                setLoading(false);
+                setSendButtonDisabled(false);
+            }
+        }, interval);
+    };
+
     const handleSendMessage = async () => {
         if (input.trim() === '') return;
         const userMessage = { text: input, sender: 'user', timestamp: new Date().toLocaleTimeString() };
         setMessages((prevMessages) => [...prevMessages, userMessage]);
+        const userInput = input;
         setInput('');
         setLoading(true);
         setSendButtonDisabled(true);
+        setError(null);
 
         try {
             const response = await authorizedFetch('/chat/query', {
@@ -37,7 +160,7 @@ function ChatPage() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ query: input }), // Usunięto collection_name
+                body: JSON.stringify({ query: userInput }),
             });
 
             if (!response.ok) {
@@ -52,10 +175,22 @@ function ChatPage() {
             }
 
             const data = await response.json();
+            
+            // Wyciągnij job_id z odpowiedzi (może być w tekście lub jako osobne pole)
+            const jobIdMatch = data.response.match(/ID zadania: ([a-f0-9-]+)/i) || data.response.match(/ID wiadomości: ([a-f0-9-]+)/i);
+            if (jobIdMatch) {
+                const jobId = jobIdMatch[1];
+                // Rozpocznij polling statusu
+                await pollMessageStatus(jobId);
+            } else {
+                // Fallback: jeśli nie znaleziono message_id, wyświetl odpowiedź bezpośrednio
             setMessages((prevMessages) => [
                 ...prevMessages,
                 { text: marked.parse(data.response), sender: 'ai', timestamp: new Date().toLocaleTimeString() },
             ]);
+                setLoading(false);
+                setSendButtonDisabled(false);
+            }
         } catch (error) {
             console.error("Błąd podczas wysyłania wiadomości:", error);
             setMessages((prevMessages) => [
@@ -63,7 +198,6 @@ function ChatPage() {
                 { text: `Błąd: ${error.message}`, sender: 'ai', timestamp: new Date().toLocaleTimeString(), isError: true },
             ]);
             setError(error.message);
-        } finally {
             setLoading(false);
             setSendButtonDisabled(false);
         }

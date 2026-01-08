@@ -1,0 +1,31 @@
+Raport ze Spotkania
+
+**Główne Tematy Omówione:**
+(Brak informacji w podanym fragmencie transkrypcji.)
+
+**Kluczowe Podjęte Decyzje:**
+(Brak informacji w podanym fragmencie transkrypcji.)
+
+**Lista Zadań do Wykonania:**
+- Zadanie: Przejrzenie (nieokreślonej rzeczy/rzeczy)
+  - Osoba odpowiedzialna: Mówiący
+  - Termin: Brak
+
+- Zadanie: Przerobienie i wrzucenie logo
+  - Osoba odpowiedzialna: Mówiący
+  - Termin: Brak (zadanie wykonano "wczoraj czy przedwczoraj")
+
+**Ważne Działania Następcze lub Kolejne Kroki:**
+(Wystąpił błąd podczas generowania odpowiedzi dla tej sekcji.)
+
+**Najważniejsze Uwagi lub Komentarze od Uczestników:**
+(Wystąpił błąd podczas generowania odpowiedzi dla tej sekcji.)
+
+
+---
+Wygenerowano: 2025-12-13 12:40:29
+Model LLM: gemini-2.5-flash
+Model Embeddings: infly/inf-retriever-v1-1.5b
+Metoda chunkowania: segmenty 240s z nałożeniem 0s
+Model transkrypcji: AssemblyAI – Nano
+Model diarizacji: Modal remote diarization

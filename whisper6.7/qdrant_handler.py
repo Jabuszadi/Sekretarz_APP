@@ -154,13 +154,14 @@ async def search_all_collections(query: str, limit_per_collection: int = 5, tota
                     if hasattr(point, "payload") and point.payload is not None:
                         payload = point.payload
                         content = payload.get("page_content") or payload.get("content")
-                        file_path = payload.get("file_path") # Pobierz file_path z payloadu
-                        if content and file_path: # Upewnij się, że oba są dostępne
-                            all_relevant_documents.append(QdrantSearchResult(content=content, file_path=file_path))
+                        # file_path może być bezpośrednio w payload lub w metadata
+                        file_path = payload.get("file_path") or payload.get("metadata", {}).get("file_path")
+                        if content: # file_path jest opcjonalny, więc sprawdzamy tylko content
+                            all_relevant_documents.append(QdrantSearchResult(content=content, file_path=file_path or ""))
                             if len(all_relevant_documents) >= total_limit:
                                 break
                         else:
-                            logging.warning(f"⚠️ Payload found, but missing 'page_content'/'content' or 'file_path' in payload for point ID {point.id} in collection {collection_name}. Full Payload: {payload}") # ZMIENIONO: Dodano pełny payload do ostrzeżenia
+                            logging.warning(f"⚠️ Payload found, but missing 'page_content'/'content' in payload for point ID {point.id} in collection {collection_name}. Full Payload: {payload}") # ZMIENIONO: Dodano pełny payload do ostrzeżenia
                     else:
                         logging.warning(f"⚠️ Unexpected point structure or missing payload in collection {collection_name}: {point}")
             except Exception as e_col:

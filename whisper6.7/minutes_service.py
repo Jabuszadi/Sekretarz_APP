@@ -108,7 +108,19 @@ async def generate_and_save_minutes(
             return None, "No relevant documents found.", None
 
         # Aggregate content for summarization
-        context = " ".join([doc.page_content for doc in relevant_docs])
+        # Uwzględnij imiona mówców z metadata, żeby LLM widział kto mówi
+        context_parts = []
+        for doc in relevant_docs:
+            speaker = doc.metadata.get("speaker", "UNKNOWN")
+            # Jeśli mówca jest w metadata, dodaj go przed tekstem
+            if speaker and speaker != "UNKNOWN":
+                # Format: "Mówiący: [imię]\n[tekst]"
+                context_parts.append(f"{speaker}: {doc.page_content}")
+            else:
+                # Fallback jeśli nie ma mówcy
+                context_parts.append(doc.page_content)
+        
+        context = "\n\n".join(context_parts)
         logging.info(f"Aggregated {len(relevant_docs)} documents into context of {len(context.split())} words for summarization.")
 
         # Generuj minuty

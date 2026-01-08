@@ -22,6 +22,15 @@ try:
 except ImportError:
     OpenAI = None
 
+# Import TranscriptionProviderError z processor.py
+try:
+    from processor import TranscriptionProviderError
+except ImportError:
+    # Fallback jeśli processor.py nie jest dostępny
+    class TranscriptionProviderError(Exception):
+        """Raised when the configured transcription provider cannot be used."""
+        pass
+
 try:
     import google.generativeai as genai
 except ImportError:
@@ -268,13 +277,39 @@ class OpenAIWhisperAPI:
 
         effective_response_format = response_format or "verbose_json"
 
-        with open(audio_path, "rb") as audio_file:
-            transcription = self._client.audio.transcriptions.create(
-                model=self.model_name,
-                file=audio_file,
-                response_format=effective_response_format,
-                **request_kwargs,
-            )
+        try:
+            with open(audio_path, "rb") as audio_file:
+                transcription = self._client.audio.transcriptions.create(
+                    model=self.model_name,
+                    file=audio_file,
+                    response_format=effective_response_format,
+                    **request_kwargs,
+                )
+        except Exception as e:
+            # Obsługa błędów OpenAI API
+            error_message = str(e)
+            error_type = type(e).__name__
+            
+            # Sprawdź czy to błąd quota/rate limit
+            if "429" in error_message or "insufficient_quota" in error_message.lower() or "rate_limit" in error_type.lower():
+                raise TranscriptionProviderError(
+                    f"OpenAI API: Przekroczono limit quota lub rate limit. "
+                    f"Sprawdź swoje konto OpenAI i billing. "
+                    f"Błąd: {error_message}"
+                ) from e
+            # Sprawdź czy to błąd autoryzacji
+            elif "401" in error_message or "unauthorized" in error_message.lower() or "invalid_api_key" in error_message.lower():
+                raise TranscriptionProviderError(
+                    f"OpenAI API: Nieprawidłowy klucz API lub brak autoryzacji. "
+                    f"Sprawdź zmienną OPENAI_API_KEY. "
+                    f"Błąd: {error_message}"
+                ) from e
+            # Inne błędy API
+            else:
+                raise TranscriptionProviderError(
+                    f"OpenAI API: Błąd podczas transkrypcji. "
+                    f"Błąd: {error_message}"
+                ) from e
 
         return self._convert_response(transcription, effective_response_format)
 
@@ -398,6 +433,19 @@ class GeminiTranscriber:
 
     def transcribe_file(self, file_path: str, prompt: Optional[str] = None) -> str:
         prompt_text = prompt or GEMINI_TRANSCRIPTION_PROMPT
+
+        # Sprawdź rate limiting przed wykonaniem requestu
+        try:
+            from gemini_rate_limiter import get_gemini_rate_limiter
+            rate_limiter = get_gemini_rate_limiter()
+            error_msg = rate_limiter.wait_if_needed()
+            if error_msg:
+                raise GeminiTranscriptionError(f"Rate limit Gemini API: {error_msg}")
+        except ImportError:
+            # Rate limiter nie jest dostępny - kontynuuj bez ograniczeń
+            logging.debug("Gemini rate limiter nie jest dostępny - pomijam rate limiting")
+        except Exception as rate_limit_error:
+            logging.warning(f"Błąd rate limitera: {rate_limit_error}. Kontynuuję bez rate limitingu.")
 
         upload = self._client.files.upload(
             file=file_path,

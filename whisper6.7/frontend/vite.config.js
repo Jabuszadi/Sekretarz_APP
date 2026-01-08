@@ -34,6 +34,15 @@
           '/get_enrolled_speakers': {
             target: 'http://localhost:7777', // api_app.py for speakers
             changeOrigin: true,
+            secure: false, // Wyłącz weryfikację certyfikatów SSL (dla development)
+            configure: (proxy, _options) => {
+              proxy.on('error', (err, _req, _res) => {
+                console.log('Proxy error:', err);
+              });
+              proxy.on('proxyReq', (proxyReq, req, _res) => {
+                console.log('Proxying request:', req.method, req.url, 'to', proxyReq.path);
+              });
+            },
           },
           '/enroll_speaker_direct': {
             target: 'http://localhost:7777', // api_app.py for speaker enrollment
@@ -51,6 +60,25 @@
             target: 'http://localhost:7777', // api_app.py for batch status stream
             changeOrigin: true,
             rewrite: (path) => path, // Zachowaj pełną ścieżkę dla backendu
+            timeout: 0, // Wyłącz timeout dla długotrwałych połączeń SSE
+            ws: false, // SSE to nie WebSocket
+            configure: (proxy, _options) => {
+              proxy.on('error', (err, _req, _res) => {
+                console.log('SSE Proxy error:', err.message);
+              });
+              proxy.on('proxyReq', (proxyReq, req, _res) => {
+                // Ustaw nagłówki dla SSE
+                proxyReq.setHeader('Connection', 'keep-alive');
+                proxyReq.setHeader('Cache-Control', 'no-cache');
+                console.log('Proxying SSE request:', req.method, req.url);
+              });
+              proxy.on('proxyRes', (proxyRes, req, _res) => {
+                // Upewnij się, że odpowiedź ma poprawne nagłówki dla SSE
+                proxyRes.headers['Connection'] = 'keep-alive';
+                proxyRes.headers['Cache-Control'] = 'no-cache';
+                proxyRes.headers['X-Accel-Buffering'] = 'no'; // Wyłącz buffering dla nginx (jeśli używany)
+              });
+            },
           },
           '/processed_batches': {
             target: 'http://localhost:7777', // api_app.py for processed batch details

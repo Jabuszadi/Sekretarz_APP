@@ -459,6 +459,7 @@ Na podstawie poniższego fragmentu transkrypcji spotkania, odpowiedz na pytanie:
 - **NIE DODAJ ŻADNYCH WSTĘPÓW, TYTUŁÓW CZY FORMULACJI TYPU "Na podstawie...", "Oto lista...", "W filmie omówiono...". Zacznij odpowiedź od razu od pierwszego punktu lub zdania.**
 - Jeśli brak jest informacji potrzebnych do odpowiedzi, Twoja odpowiedź powinna brzmieć dokładnie: "(Brak informacji w podanym fragmencie transkrypcji.)".
 - Użyj punktorów, jeśli odpowiedź wymaga listowania.
+- **WAŻNE:** W transkrypcji imiona mówców są podane w formacie "[Imię]: [tekst]". Używaj tych imion w odpowiedzi zamiast ogólnych określeń typu "Mówiący" czy "Speaker".
 """
         try:
             text = await _generate_text(prompt, model_for_generation)

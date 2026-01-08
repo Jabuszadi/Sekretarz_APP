@@ -1,0 +1,23 @@
+Collecting dramatiq_dashboard
+  Downloading dramatiq_dashboard-0.4.0-py3-none-any.whl.metadata (3.7 kB)
+Collecting dramatiq<2.0,>=1.6 (from dramatiq[redis]<2.0,>=1.6->dramatiq_dashboard)
+  Downloading dramatiq-1.18.0-py3-none-any.whl.metadata (5.1 kB)
+Requirement already satisfied: jinja2>=2 in d:\anaconda3\envs\sekretarz\lib\site-packages (from dramatiq_dashboard) (3.1.6)
+Collecting redis<5.0,>=2.0 (from dramatiq_dashboard)
+  Downloading redis-4.6.0-py3-none-any.whl.metadata (8.3 kB)
+Requirement already satisfied: prometheus-client>=0.2 in d:\anaconda3\envs\sekretarz\lib\site-packages (from dramatiq<2.0,>=1.6->dramatiq[redis]<2.0,>=1.6->dramatiq_dashboard) (0.22.1)
+Requirement already satisfied: MarkupSafe>=2.0 in d:\anaconda3\envs\sekretarz\lib\site-packages (from jinja2>=2->dramatiq_dashboard) (3.0.2)
+Downloading dramatiq_dashboard-0.4.0-py3-none-any.whl (31 kB)
+Downloading dramatiq-1.18.0-py3-none-any.whl (121 kB)
+Downloading redis-4.6.0-py3-none-any.whl (241 kB)
+Installing collected packages: redis, dramatiq, dramatiq_dashboard
+  Attempting uninstall: redis
+    Found existing installation: redis 5.3.1
+    Uninstalling redis-5.3.1:
+      Successfully uninstalled redis-5.3.1
+  Attempting uninstall: dramatiq
+    Found existing installation: dramatiq 2.0.0
+    Uninstalling dramatiq-2.0.0:
+      Successfully uninstalled dramatiq-2.0.0
+
+Successfully installed dramatiq-1.18.0 dramatiq_dashboard-0.4.0 redis-4.6.0

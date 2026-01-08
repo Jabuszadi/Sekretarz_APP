@@ -1,0 +1,25 @@
+Raport ze Spotkania
+
+**Główne Tematy Omówione:**
+- Przerobienie i wrzucenie logo.
+
+**Kluczowe Podjęte Decyzje:**
+(Wystąpił błąd podczas generowania odpowiedzi dla tej sekcji.)
+
+**Lista Zadań do Wykonania:**
+(Wystąpił błąd podczas generowania odpowiedzi dla tej sekcji.)
+
+**Ważne Działania Następcze lub Kolejne Kroki:**
+(Wystąpił błąd podczas generowania odpowiedzi dla tej sekcji.)
+
+**Najważniejsze Uwagi lub Komentarze od Uczestników:**
+(Wystąpił błąd podczas generowania odpowiedzi dla tej sekcji.)
+
+
+---
+Wygenerowano: 2025-12-14 14:25:23
+Model LLM: gemini-2.5-flash
+Model Embeddings: infly/inf-retriever-v1-1.5b
+Metoda chunkowania: segmenty 240s z nałożeniem 0s
+Model transkrypcji: AssemblyAI – Nano
+Model diarizacji: Modal remote diarization

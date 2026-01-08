@@ -42,6 +42,9 @@ USE_SUPABASE = _env_flag(
     bool(SUPABASE_URL and SUPABASE_API_KEY and SUPABASE_DB_URL),
 )
 
+# Redis configuration for Dramatiq queue
+REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379/0")
+
 # It's strongly recommended to load sensitive tokens like HF_TOKEN from environment variables
 # Example: HF_TOKEN = os.getenv("HF_TOKEN")
 HF_TOKEN = os.getenv("HF_TOKEN", "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") # Default fallback if not in .env
@@ -305,6 +308,11 @@ GEMINI_TRANSCRIPTION_PROMPT = os.getenv(
 GEMINI_TRANSCRIBE_MAX_RETRIES = int(os.getenv("GEMINI_TRANSCRIBE_MAX_RETRIES", 3))
 GEMINI_TRANSCRIBE_RETRY_BASE_DELAY = float(os.getenv("GEMINI_TRANSCRIBE_RETRY_BASE_DELAY", 5.0))
 GEMINI_SUMMARY_DELAY_SECONDS = float(os.getenv("GEMINI_SUMMARY_DELAY_SECONDS", 3.0))
+
+# Rate limiting dla Gemini API
+# RPM = Requests Per Minute, RPD = Requests Per Day
+GEMINI_RPM_LIMIT = int(os.getenv("GEMINI_RPM_LIMIT", "10"))  # Domyślnie 10 requestów/minutę
+GEMINI_RPD_LIMIT = int(os.getenv("GEMINI_RPD_LIMIT", "84"))  # Domyślnie 84 requesty/dzień
 
 # === JWT (JSON Web Token) Configuration ===
 SECRET_KEY = os.getenv("SECRET_KEY", "your-super-secret-key") # ZMIEŃ TO W PRODUKCJI!

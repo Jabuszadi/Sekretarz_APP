@@ -1,0 +1,15 @@
+Collecting arq
+  Downloading arq-0.26.3-py3-none-any.whl.metadata (2.7 kB)
+Requirement already satisfied: click>=8.0 in d:\anaconda3\envs\sekretarz\lib\site-packages (from arq) (8.2.1)
+Collecting redis<6,>=4.2.0 (from redis[hiredis]<6,>=4.2.0->arq)
+  Downloading redis-5.3.1-py3-none-any.whl.metadata (9.2 kB)
+Requirement already satisfied: PyJWT>=2.9.0 in d:\anaconda3\envs\sekretarz\lib\site-packages (from redis<6,>=4.2.0->redis[hiredis]<6,>=4.2.0->arq) (2.10.1)
+Collecting hiredis>=3.0.0 (from redis[hiredis]<6,>=4.2.0->arq)
+  Downloading hiredis-3.3.0-cp312-cp312-win_amd64.whl.metadata (7.7 kB)
+Requirement already satisfied: colorama in d:\anaconda3\envs\sekretarz\lib\site-packages (from click>=8.0->arq) (0.4.6)
+Downloading arq-0.26.3-py3-none-any.whl (25 kB)
+Downloading redis-5.3.1-py3-none-any.whl (272 kB)
+Downloading hiredis-3.3.0-cp312-cp312-win_amd64.whl (22 kB)
+Installing collected packages: redis, hiredis, arq
+
+Successfully installed arq-0.26.3 hiredis-3.3.0 redis-5.3.1
